@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:background="#070812">
 
-    <!-- CONTEÚDO -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -69,7 +68,6 @@
 
             </LinearLayout>
 
-
             <!-- PESQUISA -->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,8 +101,7 @@
 
             </LinearLayout>
 
-
-            <!-- BANNER PRINCIPAL -->
+            <!-- BANNER -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -112,7 +109,6 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp">
 
-                <!-- IMAGEM DO BANNER -->
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -120,13 +116,11 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/resident_evil" />
 
-                <!-- SOMBRA -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="#99000000" />
 
-                <!-- CONTEÚDO DO BANNER -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -184,8 +178,7 @@
 
             </FrameLayout>
 
-
-            <!-- TÍTULO DESTAQUES -->
+            <!-- TÍTULO -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -195,6 +188,7 @@
                 android:paddingEnd="20dp">
 
                 <TextView
+                    android:id="@+id/txtTituloJogos"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -212,8 +206,10 @@
 
             </LinearLayout>
 
-
-            <!-- LISTA DE JOGOS -->
+            <!--
+                Os cards NÃO ficam mais escritos manualmente aqui.
+                A MainActivity cria os cards usando os jogos da API.
+            -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -221,199 +217,18 @@
                 android:scrollbars="none">
 
                 <LinearLayout
+                    android:id="@+id/containerJogos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingStart="20dp"
-                    android:paddingEnd="20dp">
-
-
-                    <!-- CARD GOD OF WAR -->
-
-
-                    <!-- CARD FC 24 -->
-
-                    <LinearLayout
-                        android:id="@+id/cardGodOfWar"
-                        android:layout_width="180dp"
-                        android:layout_height="255dp"
-                        android:orientation="vertical"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:background="#111827"
-                        android:padding="8dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="28dp"
-                            android:background="#6C2BD9"
-                            android:padding="6dp"
-                            android:text="-20%"
-                            android:textColor="#FFFFFF"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="105dp"
-                            android:contentDescription="God of War Ragnarök"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/god_of_war" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="9dp"
-                            android:text="God of War Ragnarök"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="5dp"
-                            android:text="PS5 • ⭐⭐⭐⭐⭐"
-                            android:textColor="#A7A9B5"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="6dp"
-                            android:text="R$ 159,90"
-                            android:textColor="#FFFFFF"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/cardFC24"
-                        android:layout_width="175dp"
-                        android:layout_height="235dp"
-                        android:layout_marginEnd="12dp"
-                        android:background="#111421"
-                        android:orientation="vertical"
-                        android:clickable="true"
-                        android:focusable="true">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="28dp"
-                            android:background="#6C2BD9"
-                            android:padding="6dp"
-                            android:text="-30%"
-                            android:textColor="#FFFFFF"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="105dp"
-                            android:contentDescription="EA Sports FC 24"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/fc24" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="9dp"
-                            android:text="EA SPORTS FC 24"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="5dp"
-                            android:text="PS5 • ⭐⭐⭐⭐"
-                            android:textColor="#A7A9B5"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="255dp"
-                            android:paddingStart="10dp"
-                            android:paddingTop="6dp"
-                            android:text="R$ 139,90"
-                            android:textColor="#FFFFFF"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-
-                    <!-- CARD HOGWARTS -->
-                    <LinearLayout
-                        android:id="@+id/cardHogwarts"
-                        android:layout_width="175dp"
-                        android:layout_height="235dp"
-                        android:background="#111421"
-                        android:orientation="vertical"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="28dp"
-                            android:background="#6C2BD9"
-                            android:padding="6dp"
-                            android:text="-25%"
-                            android:textColor="#FFFFFF"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="105dp"
-                            android:contentDescription="Hogwarts Legacy"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/hogwarts" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="9dp"
-                            android:text="Hogwarts Legacy"
-                            android:textColor="#FFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="5dp"
-                            android:text="PS5 • ⭐⭐⭐⭐⭐"
-                            android:textColor="#A7A9B5"
-                            android:textSize="11sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="10dp"
-                            android:paddingTop="6dp"
-                            android:text="R$ 149,90"
-                            android:textColor="#FFFFFF"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:paddingEnd="20dp" />
 
             </HorizontalScrollView>
 
         </LinearLayout>
 
     </ScrollView>
-
 
     <!-- NAVEGAÇÃO INFERIOR -->
     <LinearLayout

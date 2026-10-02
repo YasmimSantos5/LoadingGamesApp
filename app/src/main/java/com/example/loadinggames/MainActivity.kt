@@ -1,69 +1,359 @@
 package com.example.loadinggames
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.view.Gravity
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
-
+import com.example.loadinggames.api.JogoResponse
+import com.example.loadinggames.api.RetrofitClient
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.text.NumberFormat
+import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var containerJogos: LinearLayout
+    private lateinit var edtPesquisa: EditText
+    private lateinit var txtTituloJogos: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
 
-        // CARD GOD OF WAR
-        val cardGodOfWar = findViewById<LinearLayout>(R.id.cardGodOfWar)
+        containerJogos = findViewById(R.id.containerJogos)
+        edtPesquisa = findViewById(R.id.edtPesquisa)
+        txtTituloJogos = findViewById(R.id.txtTituloJogos)
 
-        cardGodOfWar.setOnClickListener {
-            abrirDetalhes(
-                "God of War Ragnarök",
-                R.drawable.god_of_war,
-                "R$ 159,90",
-                "AÇÃO • AVENTURA",
-                "⭐ ⭐ ⭐ ⭐ ⭐  4.9",
-                "Embarque em uma aventura épica com Kratos e Atreus. Explore novos mundos, enfrente inimigos poderosos e descubra uma história emocionante.",
-                "Disponível para PS5"
+        // Carrega todos os jogos quando abre a tela
+        buscarJogosDaApi()
+
+        // Pesquisa conforme o usuário digita
+        edtPesquisa.addTextChangedListener(
+            object : TextWatcher {
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
+                }
+
+                override fun onTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    val pesquisa = s?.toString()?.trim()
+
+                    if (pesquisa.isNullOrEmpty()) {
+                        txtTituloJogos.text = "Destaques"
+                        buscarJogosDaApi()
+                    } else {
+                        txtTituloJogos.text = "Resultados"
+                        buscarJogosDaApi(pesquisa)
+                    }
+                }
+
+                override fun afterTextChanged(s: Editable?) {
+                }
+            }
+        )
+    }
+
+    private fun buscarJogosDaApi(
+        pesquisa: String? = null
+    ) {
+
+        RetrofitClient.api.buscarJogos(pesquisa)
+            .enqueue(object : Callback<List<JogoResponse>> {
+
+                override fun onResponse(
+                    call: Call<List<JogoResponse>>,
+                    response: Response<List<JogoResponse>>
+                ) {
+
+                    if (response.isSuccessful) {
+
+                        val jogos =
+                            response.body() ?: emptyList()
+
+                        Log.d(
+                            "JOGOS_API",
+                            "Quantidade: ${jogos.size}"
+                        )
+
+                        exibirJogos(jogos)
+
+                    } else {
+
+                        Log.e(
+                            "JOGOS_API",
+                            "Erro HTTP: ${response.code()}"
+                        )
+
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Erro ao carregar os jogos",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+
+                override fun onFailure(
+                    call: Call<List<JogoResponse>>,
+                    t: Throwable
+                ) {
+
+                    Log.e(
+                        "JOGOS_API",
+                        "Erro ao conectar com a API",
+                        t
+                    )
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Erro ao conectar com o servidor",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+    }
+
+    private fun exibirJogos(
+        jogos: List<JogoResponse>
+    ) {
+
+        // Apaga os cards anteriores
+        containerJogos.removeAllViews()
+
+        if (jogos.isEmpty()) {
+
+            val mensagem = TextView(this)
+
+            mensagem.text = "Nenhum jogo encontrado"
+            mensagem.setTextColor(Color.WHITE)
+            mensagem.textSize = 16f
+            mensagem.setPadding(
+                dp(10),
+                dp(30),
+                dp(30),
+                dp(30)
             )
+
+            containerJogos.addView(mensagem)
+
+            return
         }
 
+        jogos.forEach { jogo ->
 
-        // CARD FC 24
-        val cardFC24 = findViewById<LinearLayout>(R.id.cardFC24)
+            val card = criarCardJogo(jogo)
 
-        cardFC24.setOnClickListener {
-            abrirDetalhes(
-                "EA SPORTS FC 24",
-                R.drawable.fc24,
-                "R$ 139,90",
-                "ESPORTES • FUTEBOL",
-                "⭐ ⭐ ⭐ ⭐  4.7",
-                "Monte seu time dos sonhos e viva uma experiência completa de futebol com jogadores, clubes e competições de todo o mundo.",
-                "Disponível para PS5"
-            )
-        }
-
-
-        // CARD HOGWARTS
-        val cardHogwarts = findViewById<LinearLayout>(R.id.cardHogwarts)
-
-        cardHogwarts.setOnClickListener {
-            abrirDetalhes(
-                "Hogwarts Legacy",
-                R.drawable.hogwarts,
-                "R$ 149,90",
-                "AÇÃO • RPG",
-                "⭐ ⭐ ⭐ ⭐ ⭐  4.8",
-                "Explore o mundo mágico de Hogwarts, aprenda feitiços, descubra segredos e viva sua própria aventura no universo bruxo.",
-                "Disponível para PS5"
-            )
+            containerJogos.addView(card)
         }
     }
 
+    private fun criarCardJogo(
+        jogo: JogoResponse
+    ): LinearLayout {
 
-    // FUNÇÃO PARA ABRIR A TELA DE DETALHES
+        val card = LinearLayout(this)
+
+        card.orientation = LinearLayout.VERTICAL
+        card.setBackgroundColor(
+            Color.parseColor("#111421")
+        )
+
+        card.isClickable = true
+        card.isFocusable = true
+
+        val parametrosCard =
+            LinearLayout.LayoutParams(
+                dp(175),
+                dp(235)
+            )
+
+        parametrosCard.setMargins(
+            0,
+            0,
+            dp(12),
+            0
+        )
+
+        card.layoutParams = parametrosCard
+
+        // IMAGEM
+        val imagem = ImageView(this)
+
+        imagem.layoutParams =
+            LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                dp(105)
+            )
+
+        imagem.scaleType =
+            ImageView.ScaleType.CENTER_CROP
+
+        imagem.contentDescription = jogo.nome
+
+        imagem.setImageResource(
+            descobrirImagem(jogo.nome)
+        )
+
+        card.addView(imagem)
+
+        // NOME
+        val nome = TextView(this)
+
+        nome.text = jogo.nome
+        nome.setTextColor(Color.WHITE)
+        nome.textSize = 14f
+
+        nome.setTypeface(
+            nome.typeface,
+            android.graphics.Typeface.BOLD
+        )
+
+        nome.setPadding(
+            dp(10),
+            dp(9),
+            dp(10),
+            0
+        )
+
+        card.addView(nome)
+
+        // CLASSIFICAÇÃO
+        val classificacao = TextView(this)
+
+        classificacao.text =
+            if (jogo.classificacaoIndicativa == 0) {
+                "Classificação: Livre"
+            } else {
+                "Classificação: ${jogo.classificacaoIndicativa} anos"
+            }
+
+        classificacao.setTextColor(
+            Color.parseColor("#A7A9B5")
+        )
+
+        classificacao.textSize = 11f
+
+        classificacao.setPadding(
+            dp(10),
+            dp(5),
+            dp(10),
+            0
+        )
+
+        card.addView(classificacao)
+
+        // PREÇO
+        val preco = TextView(this)
+
+        preco.text =
+            formatarPreco(jogo.preco)
+
+        preco.setTextColor(Color.WHITE)
+        preco.textSize = 15f
+
+        preco.setTypeface(
+            preco.typeface,
+            android.graphics.Typeface.BOLD
+        )
+
+        preco.gravity = Gravity.START
+
+        preco.setPadding(
+            dp(10),
+            dp(8),
+            dp(10),
+            0
+        )
+
+        card.addView(preco)
+
+        // ABRIR DETALHES
+        card.setOnClickListener {
+
+            abrirDetalhes(
+                jogo.nome,
+                descobrirImagem(jogo.nome),
+                formatarPreco(jogo.preco),
+                "JOGO",
+                "",
+                jogo.descricao
+                    ?: "Sem descrição disponível.",
+                "Disponível no catálogo"
+            )
+        }
+
+        return card
+    }
+
+    private fun descobrirImagem(
+        nomeJogo: String
+    ): Int {
+
+        return when {
+
+            nomeJogo.contains(
+                "God of War",
+                ignoreCase = true
+            ) -> R.drawable.god_of_war
+
+            nomeJogo.contains(
+                "FC 24",
+                ignoreCase = true
+            ) -> R.drawable.fc24
+
+            nomeJogo.contains(
+                "Hogwarts",
+                ignoreCase = true
+            ) -> R.drawable.hogwarts
+
+            nomeJogo.contains(
+                "Resident Evil",
+                ignoreCase = true
+            ) -> R.drawable.resident_evil
+
+            else -> android.R.drawable.ic_menu_gallery
+        }
+    }
+
+    private fun formatarPreco(
+        preco: Double
+    ): String {
+
+        val formato =
+            NumberFormat.getCurrencyInstance(
+                Locale("pt", "BR")
+            )
+
+        return formato.format(preco)
+    }
+
+    private fun dp(valor: Int): Int {
+
+        return (
+                valor *
+                        resources.displayMetrics.density
+                ).toInt()
+    }
+
     private fun abrirDetalhes(
         nome: String,
         imagem: Int,
@@ -74,7 +364,11 @@ class MainActivity : AppCompatActivity() {
         plataforma: String
     ) {
 
-        val intent = Intent(this, DetalhesActivity::class.java)
+        val intent =
+            Intent(
+                this,
+                DetalhesActivity::class.java
+            )
 
         intent.putExtra("nome", nome)
         intent.putExtra("imagem", imagem)
