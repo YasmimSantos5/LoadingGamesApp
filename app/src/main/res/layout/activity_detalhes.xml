@@ -11,14 +11,13 @@
         android:orientation="vertical"
         android:paddingBottom="30dp">
 
-        <!-- IMAGEM DO JOGO -->
+        <!-- CAPA -->
         <ImageView
             android:id="@+id/imgJogo"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="340dp"
             android:contentDescription="Imagem do jogo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/god_of_war" />
+            android:scaleType="centerCrop" />
 
         <!-- CONTEÚDO -->
         <LinearLayout
@@ -27,12 +26,12 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- CATEGORIA -->
+            <!-- CLASSIFICAÇÃO -->
             <TextView
-                android:id="@+id/txtCategoria"
+                android:id="@+id/txtClassificacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="AÇÃO • AVENTURA"
+                android:text="Classificação: Livre"
                 android:textColor="#A855F7"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -43,20 +42,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="God of War Ragnarök"
+                android:text="Nome do jogo"
                 android:textColor="#FFFFFF"
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <!-- AVALIAÇÃO -->
+            <!-- DATA DE LANÇAMENTO -->
             <TextView
-                android:id="@+id/txtAvaliacao"
+                android:id="@+id/txtDataLancamento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="⭐ ⭐ ⭐ ⭐ ⭐  4.9"
-                android:textColor="#D4D5DD"
-                android:textSize="14sp" />
+                android:text="Lançamento: --"
+                android:textColor="#888DA0"
+                android:textSize="13sp" />
 
             <!-- DESCRIÇÃO -->
             <TextView
@@ -65,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:lineSpacingExtra="4dp"
-                android:text="Embarque em uma aventura épica com Kratos e Atreus. Explore novos mundos, enfrente inimigos poderosos e descubra uma história emocionante."
+                android:text="Descrição do jogo"
                 android:textColor="#B7BAC7"
                 android:textSize="14sp" />
 
@@ -75,18 +74,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="R$ 159,90"
+                android:text="R$ 0,00"
                 android:textColor="#FFFFFF"
                 android:textSize="26sp"
                 android:textStyle="bold" />
 
-            <!-- PLATAFORMA -->
+            <!-- DISPONIBILIDADE -->
             <TextView
                 android:id="@+id/txtPlataforma"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Disponível para PS5"
+                android:text="Disponível no catálogo"
                 android:textColor="#888DA0"
                 android:textSize="13sp" />
 
@@ -118,4 +117,3 @@
     </LinearLayout>
 
 </ScrollView>
-

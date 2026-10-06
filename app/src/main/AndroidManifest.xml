@@ -3,6 +3,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Permissão para acessar a API -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -14,9 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LoadingGames"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
 
-        <!-- TELA DE LOGIN - PRIMEIRA TELA DO APP -->
+        <!-- LOGIN / PRIMEIRA TELA -->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
@@ -24,16 +26,19 @@
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
         </activity>
 
-        <!-- TELA DE CADASTRO -->
+
+        <!-- CADASTRO -->
         <activity
             android:name=".CadastroActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
 
         <!-- TELA PRINCIPAL -->
         <activity
@@ -41,15 +46,24 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- TELA DE DETALHES -->
+
+        <!-- DETALHES DO JOGO -->
         <activity
             android:name=".DetalhesActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- TELA DE RECUPERAÇÃO DE SENHA -->
+
+        <!-- RECUPERAÇÃO DE SENHA -->
         <activity
             android:name=".EsqueciSenhaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- CARRINHO -->
+        <activity
+            android:name=".CarrinhoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

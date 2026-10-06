@@ -27,6 +27,7 @@
                 android:paddingStart="20dp"
                 android:paddingEnd="20dp">
 
+                <!-- LOGO -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -51,6 +52,7 @@
 
                 </LinearLayout>
 
+                <!-- FAVORITOS -->
                 <TextView
                     android:layout_width="40dp"
                     android:layout_height="40dp"
@@ -59,7 +61,9 @@
                     android:textColor="#FFFFFF"
                     android:textSize="28sp" />
 
+                <!-- CARRINHO DO TOPO -->
                 <TextView
+                    android:id="@+id/btnCarrinhoTopo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -67,6 +71,7 @@
                     android:textSize="20sp" />
 
             </LinearLayout>
+
 
             <!-- PESQUISA -->
             <LinearLayout
@@ -100,6 +105,7 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
+
 
             <!-- BANNER -->
             <FrameLayout
@@ -178,7 +184,8 @@
 
             </FrameLayout>
 
-            <!-- TÍTULO -->
+
+            <!-- TÍTULO DOS JOGOS -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -206,9 +213,10 @@
 
             </LinearLayout>
 
+
             <!--
-                Os cards NÃO ficam mais escritos manualmente aqui.
-                A MainActivity cria os cards usando os jogos da API.
+                Os jogos são adicionados dinamicamente
+                pela MainActivity usando os dados da API.
             -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
@@ -230,6 +238,7 @@
 
     </ScrollView>
 
+
     <!-- NAVEGAÇÃO INFERIOR -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -238,7 +247,9 @@
         android:gravity="center"
         android:orientation="horizontal">
 
+        <!-- INÍCIO -->
         <TextView
+            android:id="@+id/btnInicioMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -247,7 +258,9 @@
             android:textColor="#A855F7"
             android:textSize="12sp" />
 
+        <!-- BUSCAR -->
         <TextView
+            android:id="@+id/btnBuscarMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -256,7 +269,9 @@
             android:textColor="#777B8A"
             android:textSize="12sp" />
 
+        <!-- CARRINHO -->
         <TextView
+            android:id="@+id/btnCarrinhoMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -265,7 +280,9 @@
             android:textColor="#777B8A"
             android:textSize="12sp" />
 
+        <!-- PERFIL -->
         <TextView
+            android:id="@+id/btnPerfilMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
