@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#070812"
+    android:orientation="vertical">
+
+    <!-- ============================= -->
+    <!-- CABEÇALHO -->
+    <!-- ============================= -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <ImageButton
+            android:id="@+id/btnMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Menu"
+            android:padding="9dp"
+            android:src="@drawable/ic_menu" />
+
+        <!-- LOGO -->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LOADING"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GAMES"
+                android:textColor="#A855F7"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnPesquisar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Pesquisar"
+            android:padding="9dp"
+            android:src="@drawable/ic_search" />
+
+        <ImageButton
+            android:id="@+id/btnCarrinho"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Carrinho"
+            android:padding="9dp"
+            android:src="@drawable/ic_cart" />
+
+    </LinearLayout>
+
+
+    <!-- ============================= -->
+    <!-- CONTEÚDO -->
+    <!-- ============================= -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:text="Categorias"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+
+            <!-- ============================= -->
+            <!-- AÇÃO -->
+            <!-- ============================= -->
+
+            <FrameLayout
+                android:id="@+id/cardAcao"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Ação"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/capagtav" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA080914" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:contentDescription="Ação"
+                        android:src="@drawable/ic_categories"
+                        android:tint="#B14CFF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Ação"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="›"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <!-- ============================= -->
+            <!-- AVENTURA -->
+            <!-- ============================= -->
+
+            <FrameLayout
+                android:id="@+id/cardAventura"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Aventura"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/capareddead" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA080914" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:contentDescription="Aventura"
+                        android:src="@drawable/ic_categories"
+                        android:tint="#B14CFF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Aventura"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="›"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <!-- ============================= -->
+            <!-- RPG -->
+            <!-- ============================= -->
+
+            <FrameLayout
+                android:id="@+id/cardRpg"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="RPG"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/capaeldenring" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA080914" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:contentDescription="RPG"
+                        android:src="@drawable/ic_categories"
+                        android:tint="#B14CFF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="RPG"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="›"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <!-- ============================= -->
+            <!-- ESPORTES -->
+            <!-- ============================= -->
+
+            <FrameLayout
+                android:id="@+id/cardEsportes"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Esportes"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/fc24" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA080914" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:contentDescription="Esportes"
+                        android:src="@drawable/ic_categories"
+                        android:tint="#B14CFF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Esportes"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="›"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <!-- ============================= -->
+            <!-- CORRIDA -->
+            <!-- ============================= -->
+
+            <FrameLayout
+                android:id="@+id/cardCorrida"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:layout_marginBottom="10dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Corrida"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/capacyberpunk" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA080914" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:contentDescription="Corrida"
+                        android:src="@drawable/ic_categories"
+                        android:tint="#B14CFF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Corrida"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="›"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+
+            <!-- ============================= -->
+            <!-- ESTRATÉGIA -->
+            <!-- ============================= -->
+
+            <FrameLayout
+                android:id="@+id/cardEstrategia"
+                android:layout_width="match_parent"
+                android:layout_height="82dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Estratégia"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/capathewitcher" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#AA080914" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="14dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:contentDescription="Estratégia"
+                        android:src="@drawable/ic_categories"
+                        android:tint="#B14CFF" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:text="Estratégia"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="›"
+                        android:textColor="#FFFFFF"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.loadinggames">
 
-    <!-- Permissão para acessar a API -->
+    <!-- INTERNET / API -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -15,55 +16,79 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LoadingGames"
-        android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        android:usesCleartextTraffic="true">
 
-        <!-- LOGIN / PRIMEIRA TELA -->
+        <!-- SPLASH / PRIMEIRA TELA -->
+
         <activity
-            android:name=".LoginActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:name=".SplashActivity"
+            android:exported="true">
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action
+                    android:name="android.intent.action.MAIN" />
+
+                <category
+                    android:name="android.intent.category.LAUNCHER" />
+
             </intent-filter>
 
         </activity>
 
 
-        <!-- CADASTRO -->
-        <activity
-            android:name=".CadastroActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+        <!-- HOME -->
 
-
-        <!-- TELA PRINCIPAL -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
 
-        <!-- DETALHES DO JOGO -->
+        <!-- CATEGORIAS -->
+
+        <activity
+            android:name=".CategoriasActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- LOGIN -->
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- CADASTRO -->
+
+        <activity
+            android:name=".CadastroActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+
+        <!-- DETALHES -->
+
         <activity
             android:name=".DetalhesActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
 
-        <!-- RECUPERAÇÃO DE SENHA -->
+        <!-- CARRINHO -->
+
         <activity
-            android:name=".EsqueciSenhaActivity"
+            android:name=".CarrinhoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
 
-        <!-- CARRINHO -->
+        <!-- ESQUECI SENHA -->
+
         <activity
-            android:name=".CarrinhoActivity"
+            android:name=".EsqueciSenhaActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

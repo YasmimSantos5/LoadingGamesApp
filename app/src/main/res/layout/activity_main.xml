@@ -1,296 +1,1029 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#070812">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
+    <!-- ===================================================== -->
+    <!-- HOME -->
+    <!-- ===================================================== -->
 
+    <LinearLayout
+        android:id="@+id/conteudoPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#070812"
+        android:orientation="vertical">
+
+        <!-- CABEÇALHO -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="20dp">
+            android:layout_height="68dp"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
-            <!-- CABEÇALHO -->
+            <ImageButton
+                android:id="@+id/btnMenuTopo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Menu"
+                android:padding="9dp"
+                android:src="@drawable/ic_menu" />
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
-
-                <!-- LOGO -->
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="LOADING"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="GAMES"
-                        android:textColor="#9B3CFF"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <!-- FAVORITOS -->
-                <TextView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="♡"
-                    android:textColor="#FFFFFF"
-                    android:textSize="28sp" />
-
-                <!-- CARRINHO DO TOPO -->
-                <TextView
-                    android:id="@+id/btnCarrinhoTopo"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="🛒"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-
-            <!-- PESQUISA -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="#111421"
-                android:gravity="center_vertical"
-                android:paddingStart="16dp"
-                android:paddingEnd="10dp">
-
-                <TextView
-                    android:layout_width="35dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="⌕"
-                    android:textColor="#A855F7"
-                    android:textSize="28sp" />
-
-                <EditText
-                    android:id="@+id/edtPesquisa"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@null"
-                    android:hint="Buscar jogos..."
-                    android:singleLine="true"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#777B8A"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-
-            <!-- BANNER -->
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="Resident Evil 4"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/resident_evil" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#99000000" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:padding="20dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="#6C2BD9"
-                        android:padding="7dp"
-                        android:text="LANÇAMENTO"
-                        android:textColor="#FFFFFF"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
-                        android:text="RESIDENT EVIL 4"
-                        android:textColor="#FFFFFF"
-                        android:textSize="24sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="250dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="Sobreviva ao terror. Enfrente o inimigo."
-                        android:textColor="#DDDDDD"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:text="R$ 199,90"
-                        android:textColor="#B05CFF"
-                        android:textSize="21sp"
-                        android:textStyle="bold" />
-
-                    <Button
-                        android:id="@+id/btnComprar"
-                        android:layout_width="165dp"
-                        android:layout_height="42dp"
-                        android:layout_marginTop="6dp"
-                        android:backgroundTint="#6C2BD9"
-                        android:text="COMPRAR AGORA"
-                        android:textColor="#FFFFFF"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </FrameLayout>
-
-
-            <!-- TÍTULO DOS JOGOS -->
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:gravity="center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp">
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/txtTituloJogos"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Destaques"
+                    android:text="LOADING"
                     android:textColor="#FFFFFF"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver todos ›"
+                    android:text="GAMES"
                     android:textColor="#A855F7"
-                    android:textSize="13sp" />
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
+            <ImageButton
+                android:id="@+id/btnFavoritosTopo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Favoritos"
+                android:padding="9dp"
+                android:src="@drawable/ic_favorite" />
 
-            <!--
-                Os jogos são adicionados dinamicamente
-                pela MainActivity usando os dados da API.
-            -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:scrollbars="none">
+            <ImageButton
+                android:id="@+id/btnCarrinhoTopo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Carrinho"
+                android:padding="9dp"
+                android:src="@drawable/ic_cart" />
 
-                <LinearLayout
-                    android:id="@+id/containerJogos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="20dp"
-                    android:paddingEnd="20dp" />
-
-            </HorizontalScrollView>
+            <ImageButton
+                android:id="@+id/btnPerfilTopo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Perfil"
+                android:padding="9dp"
+                android:src="@drawable/ic_person" />
 
         </LinearLayout>
 
-    </ScrollView>
+        <!-- ================================================= -->
+        <!-- CONTEÚDO -->
+        <!-- ================================================= -->
 
-
-    <!-- NAVEGAÇÃO INFERIOR -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="68dp"
-        android:background="#0D0F1A"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <!-- INÍCIO -->
-        <TextView
-            android:id="@+id/btnInicioMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <ScrollView
+            android:id="@+id/scrollHome"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="⌂&#10;Início"
-            android:textColor="#A855F7"
-            android:textSize="12sp" />
+            android:fillViewport="true"
+            android:scrollbars="none">
 
-        <!-- BUSCAR -->
-        <TextView
-            android:id="@+id/btnBuscarMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="⌕&#10;Buscar"
-            android:textColor="#777B8A"
-            android:textSize="12sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="28dp">
 
-        <!-- CARRINHO -->
-        <TextView
-            android:id="@+id/btnCarrinhoMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="🛒&#10;Carrinho"
-            android:textColor="#777B8A"
-            android:textSize="12sp" />
+                <!-- PESQUISA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="#111421"
+                    android:gravity="center_vertical"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp">
 
-        <!-- PERFIL -->
-        <TextView
-            android:id="@+id/btnPerfilMenu"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="♙&#10;Perfil"
-            android:textColor="#777B8A"
-            android:textSize="12sp" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:contentDescription="Pesquisar"
+                        android:src="@drawable/ic_search"
+                        app:tint="#858999" />
+
+                    <EditText
+                        android:id="@+id/edtPesquisa"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="Buscar jogos..."
+                        android:imeOptions="actionSearch"
+                        android:inputType="text"
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#858999"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <!-- ================================================= -->
+                <!-- BANNER -->
+                <!-- ================================================= -->
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="255dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="18dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Resident Evil 4"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/resident_evil" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#88000000" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="bottom"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#6C2BD9"
+                            android:paddingStart="8dp"
+                            android:paddingTop="5dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="5dp"
+                            android:text="DESTAQUE"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="RESIDENT EVIL 4"
+                            android:textColor="#FFFFFF"
+                            android:textSize="25sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="260dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="Sobreviva ao terror. Enfrente o inimigo. Reviva o clássico."
+                            android:textColor="#D6D6DC"
+                            android:textSize="12sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="R$ 199,90"
+                                android:textColor="#C084FC"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <Button
+                                android:id="@+id/btnComprar"
+                                android:layout_width="150dp"
+                                android:layout_height="43dp"
+                                android:backgroundTint="#7C3AED"
+                                android:text="COMPRAR AGORA"
+                                android:textColor="#FFFFFF"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <!-- INDICADORES -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="18dp"
+                        android:layout_height="4dp"
+                        android:background="#A855F7" />
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="6dp"
+                        android:background="#454858" />
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="4dp"
+                        android:layout_marginStart="6dp"
+                        android:background="#454858" />
+
+                </LinearLayout>
+
+                <!-- ================================================= -->
+                <!-- DESTAQUES -->
+                <!-- ================================================= -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp">
+
+                    <TextView
+                        android:id="@+id/txtTituloJogos"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Destaques"
+                        android:textColor="#FFFFFF"
+                        android:textSize="21sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnVerTodos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:paddingStart="12dp"
+                        android:text="Ver todos  ›"
+                        android:textColor="#A855F7"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- JOGOS DA API -->
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:clipToPadding="false"
+                    android:fillViewport="false"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/containerJogos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingStart="18dp"
+                        android:paddingEnd="18dp" />
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!-- ================================================= -->
+        <!-- FOOTER -->
+        <!-- ================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:background="#0D0F1A"
+            android:orientation="horizontal">
+
+            <!-- INÍCIO -->
+            <LinearLayout
+                android:id="@+id/btnInicioMenu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="Início"
+                    android:src="@drawable/ic_home"
+                    app:tint="#A855F7" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Início"
+                    android:textColor="#A855F7"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- BUSCAR -->
+            <LinearLayout
+                android:id="@+id/btnBuscarMenu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="Buscar"
+                    android:src="@drawable/ic_search"
+                    app:tint="#777B8A" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Buscar"
+                    android:textColor="#777B8A"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <!-- CATEGORIAS -->
+            <LinearLayout
+                android:id="@+id/btnCategoriasMenu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="Categorias"
+                    android:src="@drawable/ic_categories"
+                    app:tint="#777B8A" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Categorias"
+                    android:textColor="#777B8A"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <!-- FAVORITOS -->
+            <LinearLayout
+                android:id="@+id/btnFavoritosMenu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="Favoritos"
+                    android:src="@drawable/ic_favorite"
+                    app:tint="#777B8A" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Favoritos"
+                    android:textColor="#777B8A"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+            <!-- CARRINHO -->
+            <LinearLayout
+                android:id="@+id/btnCarrinhoMenu"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="23dp"
+                    android:contentDescription="Carrinho"
+                    android:src="@drawable/ic_cart"
+                    app:tint="#777B8A" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Carrinho"
+                    android:textColor="#777B8A"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <!-- ===================================================== -->
+    <!-- FUNDO ESCURO DO MENU -->
+    <!-- ===================================================== -->
+
+    <View
+        android:id="@+id/fundoMenuLateral"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B0000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone" />
+
+    <!-- ===================================================== -->
+    <!-- MENU LATERAL PROFISSIONAL -->
+    <!-- ===================================================== -->
+
+    <LinearLayout
+        android:id="@+id/menuLateral"
+        android:layout_width="310dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#0D0F1A"
+        android:elevation="20dp"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingTop="18dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="18dp"
+        android:translationX="-340dp"
+        android:visibility="gone">
+
+        <!-- ================================================= -->
+        <!-- CABEÇALHO DO DRAWER -->
+        <!-- ================================================= -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- LOGO -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LOADING"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GAMES"
+                    android:textColor="#A855F7"
+                    android:textSize="9sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- FECHAR -->
+            <TextView
+                android:id="@+id/btnFecharMenu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="×"
+                android:textColor="#9CA0AF"
+                android:textSize="26sp" />
+
+        </LinearLayout>
+
+        <!-- ================================================= -->
+        <!-- PERFIL -->
+        <!-- ================================================= -->
+
+        <LinearLayout
+            android:id="@+id/cabecalhoUsuarioLateral"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- AVATAR -->
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_avatar"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:id="@+id/imgAvatarLateral"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Foto do usuário"
+                    android:src="@drawable/ic_person"
+                    app:tint="#FFFFFF" />
+
+            </FrameLayout>
+
+            <!-- NOME / EMAIL -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtNomeUsuarioLateral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Olá, jogador!"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtEmailUsuarioLateral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Entre para acessar sua conta"
+                    android:textColor="#858999"
+                    android:textSize="11sp" />
+
+                <!--
+                    Mantemos este ID porque seu MainActivity já usa
+                    btnContaCabecalhoLateral.
+                    Ele fica invisível para evitar duplicação visual.
+                -->
+                <TextView
+                    android:id="@+id/btnContaCabecalhoLateral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:visibility="gone"
+                    android:text="ENTRAR" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- DIVISOR -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#202330" />
+
+        <!-- ================================================= -->
+        <!-- MENU DO USUÁRIO LOGADO -->
+        <!-- ================================================= -->
+
+        <LinearLayout
+            android:id="@+id/menuUsuarioLogado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="CONTA"
+                android:textColor="#696D7C"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <!-- MINHA CONTA -->
+            <LinearLayout
+                android:id="@+id/btnMinhaContaLateral"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Minha conta"
+                    android:src="@drawable/ic_person"
+                    app:tint="#A855F7" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Minha conta"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#696D7C"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <!-- MINHA BIBLIOTECA -->
+            <LinearLayout
+                android:id="@+id/btnBibliotecaLateral"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Minha biblioteca"
+                    android:src="@drawable/ic_categories"
+                    app:tint="#969AA8" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Minha biblioteca"
+                    android:textColor="#E4E5EA"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#696D7C"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <!-- MINHAS COMPRAS -->
+            <LinearLayout
+                android:id="@+id/btnComprasLateral"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Minhas compras"
+                    android:src="@drawable/ic_cart"
+                    app:tint="#969AA8" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Minhas compras"
+                    android:textColor="#E4E5EA"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#696D7C"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <!-- CONFIGURAÇÕES -->
+            <LinearLayout
+                android:id="@+id/btnConfiguracoesLateral"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Configurações"
+                    android:src="@drawable/ic_settings"
+                    app:tint="#969AA8" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Configurações"
+                    android:textColor="#E4E5EA"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#696D7C"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ================================================= -->
+        <!-- MENU DO VISITANTE -->
+        <!-- ================================================= -->
+
+        <LinearLayout
+            android:id="@+id/menuUsuarioVisitante"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="CONTA"
+                android:textColor="#696D7C"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <!-- ENTRAR -->
+            <LinearLayout
+                android:id="@+id/btnEntrarLateral"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Entrar"
+                    android:src="@drawable/ic_person"
+                    app:tint="#A855F7" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Entrar"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#696D7C"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+            <!-- CRIAR CONTA -->
+            <LinearLayout
+                android:id="@+id/btnCriarContaLateral"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="2dp"
+                android:paddingEnd="4dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:contentDescription="Criar conta"
+                    android:src="@drawable/ic_person"
+                    app:tint="#969AA8" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_weight="1"
+                    android:text="Criar conta"
+                    android:textColor="#E4E5EA"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#696D7C"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ESPAÇO FLEXÍVEL -->
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- ================================================= -->
+        <!-- SUPORTE -->
+        <!-- ================================================= -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="SUPORTE"
+            android:textColor="#696D7C"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <!-- AJUDA -->
+        <LinearLayout
+            android:id="@+id/btnAjudaLateral"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="2dp"
+            android:paddingEnd="4dp">
+
+            <TextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:gravity="center"
+                android:text="?"
+                android:textColor="#969AA8"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="Ajuda e suporte"
+                android:textColor="#E4E5EA"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="›"
+                android:textColor="#696D7C"
+                android:textSize="22sp" />
+
+        </LinearLayout>
+
+        <!-- DIVISOR INFERIOR -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:background="#202330" />
+
+        <!-- SAIR -->
+        <LinearLayout
+            android:id="@+id/btnSairLateral"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="2dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:gravity="center"
+                android:text="↪"
+                android:textColor="#FF6577"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Sair da conta"
+                android:textColor="#FF6577"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
