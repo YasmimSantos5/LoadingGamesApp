@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.loadinggames">
-
-    <!-- INTERNET / API -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -18,77 +14,97 @@
         android:theme="@style/Theme.LoadingGames"
         android:usesCleartextTraffic="true">
 
-        <!-- SPLASH / PRIMEIRA TELA -->
-
+        <!-- SPLASH / TELA INICIAL -->
         <activity
             android:name=".SplashActivity"
             android:exported="true">
-
             <intent-filter>
-
-                <action
-                    android:name="android.intent.action.MAIN" />
-
-                <category
-                    android:name="android.intent.category.LAUNCHER" />
-
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-
         <!-- HOME -->
-
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
+        <!-- MINHA CONTA / PERFIL -->
+        <activity
+            android:name=".MinhaContaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- MEUS DADOS -->
+        <activity
+            android:name=".MeusDadosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- ALTERAR SENHA -->
+        <activity
+            android:name=".AlterarSenhaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- CONFIGURAÇÕES DA CONTA -->
+        <activity
+            android:name=".ConfiguracoesContaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- CATEGORIAS -->
-
         <activity
             android:name=".CategoriasActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-
         <!-- LOGIN -->
-
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-
         <!-- CADASTRO -->
-
         <activity
             android:name=".CadastroActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-
-        <!-- DETALHES -->
-
+        <!-- DETALHES DOS JOGOS -->
         <activity
             android:name=".DetalhesActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-
         <!-- CARRINHO -->
-
         <activity
             android:name=".CarrinhoActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-
-        <!-- ESQUECI SENHA -->
-
+        <!-- ESQUECI MINHA SENHA -->
         <activity
             android:name=".EsqueciSenhaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- BIBLIOTECA -->
+        <activity
+            android:name=".BibliotecaActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- PAGAMENTO -->
+        <activity
+            android:name=".PagamentoActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- COMPRA REALIZADA COM SUCESSO -->
+        <activity
+            android:name=".SucessoCompraActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

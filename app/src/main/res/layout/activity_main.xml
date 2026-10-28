@@ -7,9 +7,9 @@
     android:layout_height="match_parent"
     android:background="#070812">
 
-    <!-- ===================================================== -->
+    <!-- ========================================== -->
     <!-- HOME -->
-    <!-- ===================================================== -->
+    <!-- ========================================== -->
 
     <LinearLayout
         android:id="@+id/conteudoPrincipal"
@@ -18,13 +18,18 @@
         android:background="#070812"
         android:orientation="vertical">
 
+        <!-- ====================================== -->
         <!-- CABEÇALHO -->
+        <!-- ====================================== -->
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
+
+            <!-- MENU LATERAL -->
 
             <ImageButton
                 android:id="@+id/btnMenuTopo"
@@ -34,6 +39,8 @@
                 android:contentDescription="Menu"
                 android:padding="9dp"
                 android:src="@drawable/ic_menu" />
+
+            <!-- LOGO -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -60,6 +67,8 @@
 
             </LinearLayout>
 
+            <!-- FAVORITOS -->
+
             <ImageButton
                 android:id="@+id/btnFavoritosTopo"
                 android:layout_width="40dp"
@@ -69,6 +78,8 @@
                 android:padding="9dp"
                 android:src="@drawable/ic_favorite" />
 
+            <!-- CARRINHO -->
+
             <ImageButton
                 android:id="@+id/btnCarrinhoTopo"
                 android:layout_width="40dp"
@@ -77,6 +88,8 @@
                 android:contentDescription="Carrinho"
                 android:padding="9dp"
                 android:src="@drawable/ic_cart" />
+
+            <!-- PERFIL -->
 
             <ImageButton
                 android:id="@+id/btnPerfilTopo"
@@ -89,9 +102,9 @@
 
         </LinearLayout>
 
-        <!-- ================================================= -->
-        <!-- CONTEÚDO -->
-        <!-- ================================================= -->
+        <!-- ====================================== -->
+        <!-- CONTEÚDO PRINCIPAL -->
+        <!-- ====================================== -->
 
         <ScrollView
             android:id="@+id/scrollHome"
@@ -107,7 +120,10 @@
                 android:orientation="vertical"
                 android:paddingBottom="28dp">
 
+                <!-- ============================== -->
                 <!-- PESQUISA -->
+                <!-- ============================== -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -144,9 +160,9 @@
 
                 </LinearLayout>
 
-                <!-- ================================================= -->
-                <!-- BANNER -->
-                <!-- ================================================= -->
+                <!-- ============================== -->
+                <!-- BANNER RESIDENT EVIL 4 -->
+                <!-- ============================== -->
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -162,10 +178,14 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/resident_evil" />
 
+                    <!-- CAMADA ESCURA -->
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#88000000" />
+
+                    <!-- INFORMAÇÕES DO BANNER -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -235,7 +255,10 @@
 
                 </FrameLayout>
 
-                <!-- INDICADORES -->
+                <!-- ====================================== -->
+                <!-- INDICADORES DO BANNER -->
+                <!-- ====================================== -->
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="28dp"
@@ -261,9 +284,9 @@
 
                 </LinearLayout>
 
-                <!-- ================================================= -->
+                <!-- ====================================== -->
                 <!-- DESTAQUES -->
-                <!-- ================================================= -->
+                <!-- ====================================== -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -298,7 +321,10 @@
 
                 </LinearLayout>
 
-                <!-- JOGOS DA API -->
+                <!-- ====================================== -->
+                <!-- JOGOS CARREGADOS PELA API -->
+                <!-- ====================================== -->
+
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -321,9 +347,9 @@
 
         </ScrollView>
 
-        <!-- ================================================= -->
-        <!-- FOOTER -->
-        <!-- ================================================= -->
+        <!-- ====================================== -->
+        <!-- MENU INFERIOR -->
+        <!-- ====================================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -332,6 +358,7 @@
             android:orientation="horizontal">
 
             <!-- INÍCIO -->
+
             <LinearLayout
                 android:id="@+id/btnInicioMenu"
                 android:layout_width="0dp"
@@ -361,6 +388,7 @@
             </LinearLayout>
 
             <!-- BUSCAR -->
+
             <LinearLayout
                 android:id="@+id/btnBuscarMenu"
                 android:layout_width="0dp"
@@ -389,6 +417,7 @@
             </LinearLayout>
 
             <!-- CATEGORIAS -->
+
             <LinearLayout
                 android:id="@+id/btnCategoriasMenu"
                 android:layout_width="0dp"
@@ -417,6 +446,7 @@
             </LinearLayout>
 
             <!-- FAVORITOS -->
+
             <LinearLayout
                 android:id="@+id/btnFavoritosMenu"
                 android:layout_width="0dp"
@@ -445,6 +475,7 @@
             </LinearLayout>
 
             <!-- CARRINHO -->
+
             <LinearLayout
                 android:id="@+id/btnCarrinhoMenu"
                 android:layout_width="0dp"
@@ -476,9 +507,9 @@
 
     </LinearLayout>
 
-    <!-- ===================================================== -->
-    <!-- FUNDO ESCURO DO MENU -->
-    <!-- ===================================================== -->
+    <!-- ========================================== -->
+    <!-- FUNDO ESCURO DO MENU LATERAL -->
+    <!-- ========================================== -->
 
     <View
         android:id="@+id/fundoMenuLateral"
@@ -489,9 +520,9 @@
         android:focusable="true"
         android:visibility="gone" />
 
-    <!-- ===================================================== -->
-    <!-- MENU LATERAL PROFISSIONAL -->
-    <!-- ===================================================== -->
+    <!-- ========================================== -->
+    <!-- MENU LATERAL -->
+    <!-- ========================================== -->
 
     <LinearLayout
         android:id="@+id/menuLateral"
@@ -508,9 +539,9 @@
         android:translationX="-340dp"
         android:visibility="gone">
 
-        <!-- ================================================= -->
-        <!-- CABEÇALHO DO DRAWER -->
-        <!-- ================================================= -->
+        <!-- ====================================== -->
+        <!-- CABEÇALHO DO MENU -->
+        <!-- ====================================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -519,6 +550,7 @@
             android:orientation="horizontal">
 
             <!-- LOGO -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -543,7 +575,8 @@
 
             </LinearLayout>
 
-            <!-- FECHAR -->
+            <!-- FECHAR MENU -->
+
             <TextView
                 android:id="@+id/btnFecharMenu"
                 android:layout_width="40dp"
@@ -558,9 +591,9 @@
 
         </LinearLayout>
 
-        <!-- ================================================= -->
-        <!-- PERFIL -->
-        <!-- ================================================= -->
+        <!-- ====================================== -->
+        <!-- PERFIL DO USUÁRIO -->
+        <!-- ====================================== -->
 
         <LinearLayout
             android:id="@+id/cabecalhoUsuarioLateral"
@@ -572,6 +605,7 @@
             android:orientation="horizontal">
 
             <!-- AVATAR -->
+
             <FrameLayout
                 android:layout_width="64dp"
                 android:layout_height="64dp"
@@ -589,7 +623,8 @@
 
             </FrameLayout>
 
-            <!-- NOME / EMAIL -->
+            <!-- NOME E EMAIL -->
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -619,31 +654,29 @@
                     android:textColor="#858999"
                     android:textSize="11sp" />
 
-                <!--
-                    Mantemos este ID porque seu MainActivity já usa
-                    btnContaCabecalhoLateral.
-                    Ele fica invisível para evitar duplicação visual.
-                -->
+                <!-- ID UTILIZADO PELO MAINACTIVITY -->
+
                 <TextView
                     android:id="@+id/btnContaCabecalhoLateral"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:visibility="gone"
-                    android:text="ENTRAR" />
+                    android:text="ENTRAR"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
         </LinearLayout>
 
         <!-- DIVISOR -->
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#202330" />
 
-        <!-- ================================================= -->
+        <!-- ====================================== -->
         <!-- MENU DO USUÁRIO LOGADO -->
-        <!-- ================================================= -->
+        <!-- ====================================== -->
 
         <LinearLayout
             android:id="@+id/menuUsuarioLogado"
@@ -663,6 +696,7 @@
                 android:textStyle="bold" />
 
             <!-- MINHA CONTA -->
+
             <LinearLayout
                 android:id="@+id/btnMinhaContaLateral"
                 android:layout_width="match_parent"
@@ -703,6 +737,7 @@
             </LinearLayout>
 
             <!-- MINHA BIBLIOTECA -->
+
             <LinearLayout
                 android:id="@+id/btnBibliotecaLateral"
                 android:layout_width="match_parent"
@@ -741,7 +776,10 @@
 
             </LinearLayout>
 
+            <!-- ====================================== -->
             <!-- MINHAS COMPRAS -->
+            <!-- ====================================== -->
+
             <LinearLayout
                 android:id="@+id/btnComprasLateral"
                 android:layout_width="match_parent"
@@ -780,7 +818,10 @@
 
             </LinearLayout>
 
+            <!-- ====================================== -->
             <!-- CONFIGURAÇÕES -->
+            <!-- ====================================== -->
+
             <LinearLayout
                 android:id="@+id/btnConfiguracoesLateral"
                 android:layout_width="match_parent"
@@ -821,9 +862,9 @@
 
         </LinearLayout>
 
-        <!-- ================================================= -->
+        <!-- ========================================== -->
         <!-- MENU DO VISITANTE -->
-        <!-- ================================================= -->
+        <!-- ========================================== -->
 
         <LinearLayout
             android:id="@+id/menuUsuarioVisitante"
@@ -842,7 +883,10 @@
                 android:textSize="10sp"
                 android:textStyle="bold" />
 
+            <!-- ====================================== -->
             <!-- ENTRAR -->
+            <!-- ====================================== -->
+
             <LinearLayout
                 android:id="@+id/btnEntrarLateral"
                 android:layout_width="match_parent"
@@ -882,7 +926,10 @@
 
             </LinearLayout>
 
+            <!-- ====================================== -->
             <!-- CRIAR CONTA -->
+            <!-- ====================================== -->
+
             <LinearLayout
                 android:id="@+id/btnCriarContaLateral"
                 android:layout_width="match_parent"
@@ -923,15 +970,18 @@
 
         </LinearLayout>
 
+        <!-- ========================================== -->
         <!-- ESPAÇO FLEXÍVEL -->
+        <!-- ========================================== -->
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <!-- ================================================= -->
+        <!-- ========================================== -->
         <!-- SUPORTE -->
-        <!-- ================================================= -->
+        <!-- ========================================== -->
 
         <TextView
             android:layout_width="match_parent"
@@ -942,7 +992,10 @@
             android:textSize="10sp"
             android:textStyle="bold" />
 
-        <!-- AJUDA -->
+        <!-- ========================================== -->
+        <!-- AJUDA E SUPORTE -->
+        <!-- ========================================== -->
+
         <LinearLayout
             android:id="@+id/btnAjudaLateral"
             android:layout_width="match_parent"
@@ -983,7 +1036,10 @@
 
         </LinearLayout>
 
+        <!-- ========================================== -->
         <!-- DIVISOR INFERIOR -->
+        <!-- ========================================== -->
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -991,7 +1047,10 @@
             android:layout_marginBottom="6dp"
             android:background="#202330" />
 
-        <!-- SAIR -->
+        <!-- ========================================== -->
+        <!-- SAIR DA CONTA -->
+        <!-- ========================================== -->
+
         <LinearLayout
             android:id="@+id/btnSairLateral"
             android:layout_width="match_parent"

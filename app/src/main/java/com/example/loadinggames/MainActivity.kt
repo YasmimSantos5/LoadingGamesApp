@@ -1,3 +1,4 @@
+
 package com.example.loadinggames
 
 import android.content.Context
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnCarrinhoTopo: ImageButton
     private lateinit var btnPerfilTopo: ImageButton
 
+    // MENU INFERIOR
     private lateinit var btnInicioMenu: LinearLayout
     private lateinit var btnBuscarMenu: LinearLayout
     private lateinit var btnCategoriasMenu: LinearLayout
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fundoMenuLateral: View
     private lateinit var btnFecharMenu: TextView
 
-    // CABEÇALHO DO USUÁRIO
+    // DADOS DO USUÁRIO
     private lateinit var txtNomeUsuarioLateral: TextView
     private lateinit var txtEmailUsuarioLateral: TextView
     private lateinit var btnContaCabecalhoLateral: TextView
@@ -60,6 +62,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuUsuarioLogado: LinearLayout
     private lateinit var menuUsuarioVisitante: LinearLayout
 
+    // OPÇÕES DO MENU LATERAL
     private lateinit var btnMinhaContaLateral: LinearLayout
     private lateinit var btnBibliotecaLateral: LinearLayout
     private lateinit var btnComprasLateral: LinearLayout
@@ -103,9 +106,9 @@ class MainActivity : AppCompatActivity() {
         verificarAcoesRecebidas(intent)
     }
 
-    // =====================================================
-    // COMPONENTES
-    // =====================================================
+    // ==============================================
+    // INICIALIZAR COMPONENTES
+    // ==============================================
 
     private fun iniciarComponentes() {
 
@@ -118,6 +121,7 @@ class MainActivity : AppCompatActivity() {
         btnCarrinhoTopo = findViewById(R.id.btnCarrinhoTopo)
         btnPerfilTopo = findViewById(R.id.btnPerfilTopo)
 
+        // MENU INFERIOR
         btnInicioMenu = findViewById(R.id.btnInicioMenu)
         btnBuscarMenu = findViewById(R.id.btnBuscarMenu)
         btnCategoriasMenu = findViewById(R.id.btnCategoriasMenu)
@@ -148,6 +152,7 @@ class MainActivity : AppCompatActivity() {
         menuUsuarioVisitante =
             findViewById(R.id.menuUsuarioVisitante)
 
+        // OPÇÕES DO MENU LATERAL
         btnMinhaContaLateral =
             findViewById(R.id.btnMinhaContaLateral)
 
@@ -173,11 +178,13 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.btnSairLateral)
     }
 
-    // =====================================================
-    // CLIQUES
-    // =====================================================
+    // ==============================================
+    // CLIQUES DOS BOTÕES
+    // ==============================================
 
     private fun configurarCliques() {
+
+        // BOTÕES DO TOPO
 
         btnMenuTopo.setOnClickListener {
             abrirMenuLateral()
@@ -194,6 +201,10 @@ class MainActivity : AppCompatActivity() {
         btnPerfilTopo.setOnClickListener {
             abrirPerfil()
         }
+
+        // ==========================================
+        // MENU INFERIOR
+        // ==========================================
 
         btnInicioMenu.setOnClickListener {
             voltarParaInicio()
@@ -215,6 +226,10 @@ class MainActivity : AppCompatActivity() {
             abrirCarrinho()
         }
 
+        // ==========================================
+        // BOTÕES DA HOME
+        // ==========================================
+
         btnVerTodos.setOnClickListener {
             mostrarTodosOsJogos()
         }
@@ -222,6 +237,10 @@ class MainActivity : AppCompatActivity() {
         btnComprar.setOnClickListener {
             abrirResidentEvil()
         }
+
+        // ==========================================
+        // ABRIR E FECHAR MENU LATERAL
+        // ==========================================
 
         btnFecharMenu.setOnClickListener {
             fecharMenuLateral()
@@ -231,9 +250,9 @@ class MainActivity : AppCompatActivity() {
             fecharMenuLateral()
         }
 
-        // CABEÇALHO DO MENU
-        btnContaCabecalhoLateral.setOnClickListener {
+        // CABEÇALHO DO MENU LATERAL
 
+        btnContaCabecalhoLateral.setOnClickListener {
             fecharMenuLateral()
 
             if (usuarioEstaLogado()) {
@@ -243,26 +262,24 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // LOGADO
-        btnMinhaContaLateral.setOnClickListener {
+        // ==========================================
+        // MENU LATERAL - USUÁRIO LOGADO
+        // ==========================================
 
+        // MINHA CONTA
+        btnMinhaContaLateral.setOnClickListener {
             fecharMenuLateral()
             abrirMinhaConta()
         }
 
+        // MINHA BIBLIOTECA
         btnBibliotecaLateral.setOnClickListener {
-
             fecharMenuLateral()
-
-            Toast.makeText(
-                this,
-                "Minha biblioteca será implementada na próxima etapa.",
-                Toast.LENGTH_SHORT
-            ).show()
+            abrirBiblioteca()
         }
 
+        // MINHAS COMPRAS
         btnComprasLateral.setOnClickListener {
-
             fecharMenuLateral()
 
             Toast.makeText(
@@ -272,33 +289,41 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
+        // CONFIGURAÇÕES
         btnConfiguracoesLateral.setOnClickListener {
-
             fecharMenuLateral()
 
-            Toast.makeText(
-                this,
-                "Configurações será implementado na próxima etapa.",
-                Toast.LENGTH_SHORT
-            ).show()
+            if (usuarioEstaLogado()) {
+                startActivity(
+                    Intent(
+                        this,
+                        ConfiguracoesContaActivity::class.java
+                    )
+                )
+            } else {
+                abrirLogin()
+            }
         }
 
-        // VISITANTE
-        btnEntrarLateral.setOnClickListener {
+        // ==========================================
+        // MENU LATERAL - VISITANTE
+        // ==========================================
 
+        btnEntrarLateral.setOnClickListener {
             fecharMenuLateral()
             abrirLogin()
         }
 
         btnCriarContaLateral.setOnClickListener {
-
             fecharMenuLateral()
             abrirCadastro()
         }
 
-        // AJUDA
-        btnAjudaLateral.setOnClickListener {
+        // ==========================================
+        // AJUDA E SUPORTE
+        // ==========================================
 
+        btnAjudaLateral.setOnClickListener {
             fecharMenuLateral()
 
             Toast.makeText(
@@ -308,17 +333,40 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        // SAIR
-        btnSairLateral.setOnClickListener {
+        // ==========================================
+        // SAIR DA CONTA
+        // ==========================================
 
+        btnSairLateral.setOnClickListener {
             fecharMenuLateral()
             confirmarSaida()
         }
     }
 
-    // =====================================================
+    // ==============================================
+    // ABRIR MINHA BIBLIOTECA
+    // ==============================================
+
+    private fun abrirBiblioteca() {
+
+        if (!usuarioEstaLogado()) {
+            mostrarLoginNecessario(
+                "Entre na sua conta para acessar sua biblioteca."
+            )
+            return
+        }
+
+        startActivity(
+            Intent(
+                this,
+                BibliotecaActivity::class.java
+            )
+        )
+    }
+
+    // ==============================================
     // MENU LATERAL
-    // =====================================================
+    // ==============================================
 
     private fun abrirMenuLateral() {
 
@@ -373,37 +421,33 @@ class MainActivity : AppCompatActivity() {
             .start()
     }
 
+    // ==============================================
+    // ATUALIZAR DADOS DO MENU LATERAL
+    // ==============================================
+
     private fun atualizarMenuLateral() {
 
-        val preferencias =
-            getSharedPreferences(
-                "LoadingGamesPrefs",
-                MODE_PRIVATE
-            )
+        val preferencias = getSharedPreferences(
+            "LoadingGamesPrefs",
+            MODE_PRIVATE
+        )
 
-        val idUsuario =
-            preferencias.getInt(
-                "idUsuario",
-                -1
-            )
+        val idUsuario = preferencias.getInt(
+            "idUsuario",
+            -1
+        )
 
         if (idUsuario != -1) {
 
-            val nome =
-                preferencias.getString(
-                    "nomeUsuario",
-                    null
-                )
-                    ?.trim()
-                    .orEmpty()
+            val nome = preferencias.getString(
+                "nomeUsuario",
+                null
+            )?.trim().orEmpty()
 
-            val email =
-                preferencias.getString(
-                    "emailUsuario",
-                    null
-                )
-                    ?.trim()
-                    .orEmpty()
+            val email = preferencias.getString(
+                "emailUsuario",
+                null
+            )?.trim().orEmpty()
 
             txtNomeUsuarioLateral.text =
                 if (nome.isNotEmpty()) {
@@ -453,26 +497,23 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // =====================================================
+    // ==============================================
     // BOTÃO VOLTAR
-    // =====================================================
+    // ==============================================
 
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
 
         if (menuAberto) {
-
             fecharMenuLateral()
-
         } else {
-
             super.onBackPressed()
         }
     }
 
-    // =====================================================
+    // ==============================================
     // HOME
-    // =====================================================
+    // ==============================================
 
     private fun voltarParaInicio() {
 
@@ -482,8 +523,7 @@ class MainActivity : AppCompatActivity() {
 
         } else {
 
-            txtTituloJogos.text =
-                "Destaques"
+            txtTituloJogos.text = "Destaques"
 
             buscarJogosDaApi()
         }
@@ -493,15 +533,14 @@ class MainActivity : AppCompatActivity() {
 
         edtPesquisa.clearFocus()
 
-        txtTituloJogos.text =
-            "Todos os jogos"
+        txtTituloJogos.text = "Todos os jogos"
 
         buscarJogosDaApi()
     }
 
-    // =====================================================
-    // AÇÕES RECEBIDAS
-    // =====================================================
+    // ==============================================
+    // AÇÕES RECEBIDAS DE OUTRAS TELAS
+    // ==============================================
 
     private fun verificarAcoesRecebidas(
         intentRecebida: Intent
@@ -546,9 +585,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // =====================================================
+    // ==============================================
     // PESQUISA
-    // =====================================================
+    // ==============================================
 
     private fun configurarPesquisa() {
 
@@ -572,26 +611,19 @@ class MainActivity : AppCompatActivity() {
                 ) {
 
                     val pesquisa =
-                        s
-                            ?.toString()
-                            ?.trim()
-                            .orEmpty()
+                        s?.toString()?.trim().orEmpty()
 
                     if (pesquisa.isEmpty()) {
 
-                        txtTituloJogos.text =
-                            "Destaques"
+                        txtTituloJogos.text = "Destaques"
 
                         buscarJogosDaApi()
 
                     } else {
 
-                        txtTituloJogos.text =
-                            "Resultados"
+                        txtTituloJogos.text = "Resultados"
 
-                        buscarJogosDaApi(
-                            pesquisa
-                        )
+                        buscarJogosDaApi(pesquisa)
                     }
                 }
 
@@ -611,10 +643,9 @@ class MainActivity : AppCompatActivity() {
             edtPesquisa.text.length
         )
 
-        val teclado =
-            getSystemService(
-                Context.INPUT_METHOD_SERVICE
-            ) as InputMethodManager
+        val teclado = getSystemService(
+            Context.INPUT_METHOD_SERVICE
+        ) as InputMethodManager
 
         teclado.showSoftInput(
             edtPesquisa,
@@ -622,9 +653,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // =====================================================
+    // ==============================================
     // CATEGORIAS
-    // =====================================================
+    // ==============================================
 
     private fun abrirCategorias() {
 
@@ -636,23 +667,26 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // =====================================================
-    // LOGIN
-    // =====================================================
+    // ==============================================
+    // VERIFICAR LOGIN
+    // ==============================================
 
     private fun usuarioEstaLogado(): Boolean {
 
-        val preferencias =
-            getSharedPreferences(
-                "LoadingGamesPrefs",
-                MODE_PRIVATE
-            )
+        val preferencias = getSharedPreferences(
+            "LoadingGamesPrefs",
+            MODE_PRIVATE
+        )
 
         return preferencias.getInt(
             "idUsuario",
             -1
         ) != -1
     }
+
+    // ==============================================
+    // LOGIN
+    // ==============================================
 
     private fun abrirLogin() {
 
@@ -664,6 +698,10 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    // ==============================================
+    // CADASTRO
+    // ==============================================
+
     private fun abrirCadastro() {
 
         startActivity(
@@ -674,9 +712,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // =====================================================
+    // ==============================================
     // CARRINHO
-    // =====================================================
+    // ==============================================
 
     private fun abrirCarrinho() {
 
@@ -697,9 +735,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // =====================================================
+    // ==============================================
     // FAVORITOS
-    // =====================================================
+    // ==============================================
 
     private fun abrirFavoritos() {
 
@@ -719,9 +757,9 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    // =====================================================
+    // ==============================================
     // PERFIL
-    // =====================================================
+    // ==============================================
 
     private fun abrirPerfil() {
 
@@ -735,18 +773,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // ==============================================
+    // MINHA CONTA
+    // ==============================================
+
     private fun abrirMinhaConta() {
 
-        Toast.makeText(
+        if (!usuarioEstaLogado()) {
+            abrirLogin()
+            return
+        }
+
+        val intent = Intent(
             this,
-            "Minha conta será implementada na próxima etapa.",
-            Toast.LENGTH_SHORT
-        ).show()
+            MinhaContaActivity::class.java
+        )
+
+        startActivity(intent)
     }
 
-    // =====================================================
-    // LOGIN NECESSÁRIO
-    // =====================================================
+    // ==============================================
+    // AVISO DE LOGIN NECESSÁRIO
+    // ==============================================
 
     private fun mostrarLoginNecessario(
         mensagem: String
@@ -755,28 +803,21 @@ class MainActivity : AppCompatActivity() {
         AlertDialog.Builder(this)
             .setTitle("Entre para continuar")
             .setMessage(mensagem)
-            .setPositiveButton(
-                "ENTRAR"
-            ) { _, _ ->
+            .setPositiveButton("ENTRAR") { _, _ ->
 
                 abrirLogin()
             }
-            .setNegativeButton(
-                "CRIAR CONTA"
-            ) { _, _ ->
+            .setNegativeButton("CRIAR CONTA") { _, _ ->
 
                 abrirCadastro()
             }
-            .setNeutralButton(
-                "AGORA NÃO",
-                null
-            )
+            .setNeutralButton("AGORA NÃO", null)
             .show()
     }
 
-    // =====================================================
-    // LOGOUT
-    // =====================================================
+    // ==============================================
+    // CONFIRMAR SAÍDA DA CONTA
+    // ==============================================
 
     private fun confirmarSaida() {
 
@@ -785,18 +826,17 @@ class MainActivity : AppCompatActivity() {
             .setMessage(
                 "Deseja realmente sair da sua conta?"
             )
-            .setPositiveButton(
-                "SAIR"
-            ) { _, _ ->
+            .setPositiveButton("SAIR") { _, _ ->
 
                 sairDaConta()
             }
-            .setNegativeButton(
-                "CANCELAR",
-                null
-            )
+            .setNegativeButton("CANCELAR", null)
             .show()
     }
+
+    // ==============================================
+    // SAIR DA CONTA
+    // ==============================================
 
     private fun sairDaConta() {
 
@@ -808,6 +848,7 @@ class MainActivity : AppCompatActivity() {
             .remove("idUsuario")
             .remove("nomeUsuario")
             .remove("emailUsuario")
+            .remove("loginUsuario")
             .remove("fotoPerfilUrl")
             .apply()
 
@@ -820,9 +861,9 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    // =====================================================
-    // RESIDENT EVIL
-    // =====================================================
+    // ==============================================
+    // BANNER RESIDENT EVIL
+    // ==============================================
 
     private fun abrirResidentEvil() {
 
@@ -865,9 +906,9 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // =====================================================
-    // API
-    // =====================================================
+    // ==============================================
+    // BUSCAR JOGOS DA API
+    // ==============================================
 
     private fun buscarJogosDaApi(
         pesquisa: String? = null
@@ -944,9 +985,9 @@ class MainActivity : AppCompatActivity() {
             )
     }
 
-    // =====================================================
-    // MOSTRAR JOGOS
-    // =====================================================
+    // ==============================================
+    // EXIBIR JOGOS NA TELA INICIAL
+    // ==============================================
 
     private fun exibirJogos(
         jogos: List<JogoResponse>
@@ -993,9 +1034,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // =====================================================
-    // CARD DO JOGO
-    // =====================================================
+    // ==============================================
+    // CRIAR CARD DE CADA JOGO
+    // ==============================================
 
     private fun criarCardJogo(
         jogo: JogoResponse
@@ -1013,11 +1054,8 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        card.isClickable =
-            true
-
-        card.isFocusable =
-            true
+        card.isClickable = true
+        card.isFocusable = true
 
         val parametrosCard =
             LinearLayout.LayoutParams(
@@ -1035,7 +1073,8 @@ class MainActivity : AppCompatActivity() {
         card.layoutParams =
             parametrosCard
 
-        // CAPA
+        // CAPA DO JOGO
+
         val imagem =
             ImageView(this)
 
@@ -1061,7 +1100,8 @@ class MainActivity : AppCompatActivity() {
             imagem
         )
 
-        // NOME
+        // NOME DO JOGO
+
         val nome =
             TextView(this)
 
@@ -1072,16 +1112,14 @@ class MainActivity : AppCompatActivity() {
             Color.WHITE
         )
 
-        nome.textSize =
-            14f
+        nome.textSize = 14f
 
         nome.setTypeface(
             nome.typeface,
             Typeface.BOLD
         )
 
-        nome.maxLines =
-            2
+        nome.maxLines = 2
 
         nome.setPadding(
             dp(10),
@@ -1094,7 +1132,8 @@ class MainActivity : AppCompatActivity() {
             nome
         )
 
-        // CLASSIFICAÇÃO
+        // CLASSIFICAÇÃO INDICATIVA
+
         val classificacao =
             TextView(this)
 
@@ -1113,8 +1152,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        classificacao.textSize =
-            10f
+        classificacao.textSize = 10f
 
         classificacao.setPadding(
             dp(10),
@@ -1127,7 +1165,8 @@ class MainActivity : AppCompatActivity() {
             classificacao
         )
 
-        // PREÇO
+        // PREÇO DO JOGO
+
         val preco =
             TextView(this)
 
@@ -1142,8 +1181,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        preco.textSize =
-            15f
+        preco.textSize = 15f
 
         preco.setTypeface(
             preco.typeface,
@@ -1160,6 +1198,8 @@ class MainActivity : AppCompatActivity() {
         card.addView(
             preco
         )
+
+        // ABRIR DETALHES AO TOCAR NO CARD
 
         card.setOnClickListener {
 
@@ -1185,9 +1225,9 @@ class MainActivity : AppCompatActivity() {
         return card
     }
 
-    // =====================================================
-    // IMAGENS
-    // =====================================================
+    // ==============================================
+    // IMAGENS DOS JOGOS
+    // ==============================================
 
     private fun descobrirImagem(
         nomeJogo: String
@@ -1266,9 +1306,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // =====================================================
-    // PREÇO
-    // =====================================================
+    // ==============================================
+    // FORMATAR PREÇO EM REAIS
+    // ==============================================
 
     private fun formatarPreco(
         preco: Double
@@ -1286,9 +1326,9 @@ class MainActivity : AppCompatActivity() {
             )
     }
 
-    // =====================================================
-    // DP
-    // =====================================================
+    // ==============================================
+    // CONVERTER DP PARA PIXELS
+    // ==============================================
 
     private fun dp(
         valor: Int
@@ -1300,9 +1340,9 @@ class MainActivity : AppCompatActivity() {
                 ).toInt()
     }
 
-    // =====================================================
-    // DETALHES
-    // =====================================================
+    // ==============================================
+    // ABRIR DETALHES DO JOGO
+    // ==============================================
 
     private fun abrirDetalhes(
         idJogo: Int,
@@ -1314,11 +1354,10 @@ class MainActivity : AppCompatActivity() {
         dataLancamento: String?
     ) {
 
-        val intent =
-            Intent(
-                this,
-                DetalhesActivity::class.java
-            )
+        val intent = Intent(
+            this,
+            DetalhesActivity::class.java
+        )
 
         intent.putExtra(
             "idJogo",
@@ -1355,8 +1394,6 @@ class MainActivity : AppCompatActivity() {
             dataLancamento
         )
 
-        startActivity(
-            intent
-        )
+        startActivity(intent)
     }
 }

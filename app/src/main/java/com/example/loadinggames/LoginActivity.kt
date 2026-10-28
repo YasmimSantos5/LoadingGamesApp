@@ -202,13 +202,14 @@ class LoginActivity : AppCompatActivity() {
                                     usuario.id
                                 )
                                 .putString(
-                                    "nomeUsuario",
-                                    usuario.nome
-                                )
-                                .putString(
                                     "emailUsuario",
                                     usuario.email
                                 )
+                                .putString(
+                                    "loginUsuario",
+                                    usuario.nomeUsuario
+                                )
+                                .putString("loginUsuario", usuario.nomeUsuario)
                                 .apply()
 
 

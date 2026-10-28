@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#080912">
+
+    <!-- ====================================== -->
+    <!-- CABEÇALHO -->
+    <!-- ====================================== -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="18dp">
+
+        <TextView
+            android:id="@+id/btnVoltarConta"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp"
+            android:contentDescription="Voltar" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Minha Conta"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+
+    </LinearLayout>
+
+    <!-- ====================================== -->
+    <!-- CONTEÚDO -->
+    <!-- ====================================== -->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <!-- ================================== -->
+            <!-- CARD DO PERFIL -->
+            <!-- ================================== -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="24dp"
+                android:background="@drawable/bg_card_perfil">
+
+                <FrameLayout
+                    android:layout_width="92dp"
+                    android:layout_height="92dp">
+
+                    <TextView
+                        android:layout_width="88dp"
+                        android:layout_height="88dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/bg_avatar_perfil"
+                        android:gravity="center"
+                        android:text="🎮"
+                        android:textSize="39sp" />
+
+                    <TextView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="bottom|right"
+                        android:background="@drawable/bg_roxo_perfil"
+                        android:gravity="center"
+                        android:text="✦"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/txtNomeConta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:gravity="center"
+                    android:text="Jogador"
+                    android:textColor="#FFFFFF"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtNomeUsuarioConta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="\@jogador"
+                    android:textColor="#C1BDD3"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/txtEmailConta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:text="email@exemplo.com"
+                    android:textColor="#C1BDD3"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_selo_perfil"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="7dp"
+                    android:text="🎮  Usuário Comum"
+                    android:textColor="#D9B4FF"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <!-- ================================== -->
+            <!-- MEUS DADOS -->
+            <!-- ================================== -->
+
+            <LinearLayout
+                android:id="@+id/btnMeusDados"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_card_perfil"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:text="♙"
+                    android:textColor="#CB78FF"
+                    android:textSize="28sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Meus dados"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Nome, e-mail e nome de usuário"
+                        android:textColor="#B8B7C9"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#D5C9EA"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <!-- ================================== -->
+            <!-- ALTERAR SENHA -->
+            <!-- ================================== -->
+
+            <LinearLayout
+                android:id="@+id/btnAlterarSenha"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_card_perfil"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:text="♙"
+                    android:textColor="#CB78FF"
+                    android:textSize="28sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Alterar senha"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Defina uma nova senha"
+                        android:textColor="#B8B7C9"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#D5C9EA"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+            <!-- ================================== -->
+            <!-- CONFIGURAÇÕES DA CONTA -->
+            <!-- ================================== -->
+
+            <LinearLayout
+                android:id="@+id/btnConfiguracoesConta"
+                android:layout_width="match_parent"
+                android:layout_height="78dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_card_perfil"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:text="⚙"
+                    android:textColor="#CB78FF"
+                    android:textSize="26sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Configurações da conta"
+                        android:textColor="#FFFFFF"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Privacidade e preferências"
+                        android:textColor="#B8B7C9"
+                        android:textSize="11sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textColor="#D5C9EA"
+                    android:textSize="28sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <!-- ========================================== -->
+    <!-- MENU INFERIOR - PADRÃO DA MAIN -->
+    <!-- ========================================== -->
+
+    <LinearLayout
+        android:id="@+id/menuInferiorConta"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="#0D0F1A"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:elevation="12dp">
+
+        <!-- ====================================== -->
+        <!-- INÍCIO -->
+        <!-- ====================================== -->
+
+        <LinearLayout
+            android:id="@+id/btnInicioConta"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:contentDescription="Início"
+                android:src="@drawable/ic_home"
+                app:tint="#777B8A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Início"
+                android:textColor="#777B8A"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- ====================================== -->
+        <!-- BUSCAR -->
+        <!-- ====================================== -->
+
+        <LinearLayout
+            android:id="@+id/btnBuscarConta"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:contentDescription="Buscar"
+                android:src="@drawable/ic_search"
+                app:tint="#777B8A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Buscar"
+                android:textColor="#777B8A"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- ====================================== -->
+        <!-- CATEGORIAS -->
+        <!-- ====================================== -->
+
+        <LinearLayout
+            android:id="@+id/btnCategoriasConta"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:contentDescription="Categorias"
+                android:src="@drawable/ic_categories"
+                app:tint="#777B8A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Categorias"
+                android:textColor="#777B8A"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- ====================================== -->
+        <!-- FAVORITOS -->
+        <!-- ====================================== -->
+
+        <LinearLayout
+            android:id="@+id/btnFavoritosConta"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:contentDescription="Favoritos"
+                android:src="@drawable/ic_favorite"
+                app:tint="#777B8A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Favoritos"
+                android:textColor="#777B8A"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <!-- ====================================== -->
+        <!-- CARRINHO -->
+        <!-- ====================================== -->
+
+        <LinearLayout
+            android:id="@+id/btnCarrinhoConta"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:contentDescription="Carrinho"
+                android:src="@drawable/ic_cart"
+                app:tint="#777B8A" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Carrinho"
+                android:textColor="#777B8A"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
