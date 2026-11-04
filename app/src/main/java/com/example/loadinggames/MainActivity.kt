@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -30,10 +31,12 @@ import java.util.Locale
 
 class MainActivity : AppCompatActivity() {
 
+    // COMPONENTES DA HOME
     private lateinit var containerJogos: LinearLayout
     private lateinit var edtPesquisa: EditText
     private lateinit var txtTituloJogos: TextView
 
+    // BOTÕES DO TOPO
     private lateinit var btnMenuTopo: ImageButton
     private lateinit var btnFavoritosTopo: ImageButton
     private lateinit var btnCarrinhoTopo: ImageButton
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnFavoritosMenu: LinearLayout
     private lateinit var btnCarrinhoMenu: LinearLayout
 
+    // BOTÕES DA HOME
     private lateinit var btnVerTodos: TextView
     private lateinit var btnComprar: Button
 
@@ -70,22 +74,22 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var btnEntrarLateral: LinearLayout
     private lateinit var btnCriarContaLateral: LinearLayout
-
     private lateinit var btnAjudaLateral: LinearLayout
     private lateinit var btnSairLateral: LinearLayout
 
+    // CONTROLE
     private var menuAberto = false
-
     private var jogosCarregados: List<JogoResponse> = emptyList()
 
+    // INICIAR A ACTIVITY
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         iniciarComponentes()
         configurarCliques()
         configurarPesquisa()
-
         atualizarMenuLateral()
         buscarJogosDaApi()
         verificarAcoesRecebidas(intent)
@@ -106,10 +110,7 @@ class MainActivity : AppCompatActivity() {
         verificarAcoesRecebidas(intent)
     }
 
-    // ==============================================
     // INICIALIZAR COMPONENTES
-    // ==============================================
-
     private fun iniciarComponentes() {
 
         containerJogos = findViewById(R.id.containerJogos)
@@ -121,7 +122,6 @@ class MainActivity : AppCompatActivity() {
         btnCarrinhoTopo = findViewById(R.id.btnCarrinhoTopo)
         btnPerfilTopo = findViewById(R.id.btnPerfilTopo)
 
-        // MENU INFERIOR
         btnInicioMenu = findViewById(R.id.btnInicioMenu)
         btnBuscarMenu = findViewById(R.id.btnBuscarMenu)
         btnCategoriasMenu = findViewById(R.id.btnCategoriasMenu)
@@ -131,12 +131,10 @@ class MainActivity : AppCompatActivity() {
         btnVerTodos = findViewById(R.id.btnVerTodos)
         btnComprar = findViewById(R.id.btnComprar)
 
-        // MENU LATERAL
         menuLateral = findViewById(R.id.menuLateral)
         fundoMenuLateral = findViewById(R.id.fundoMenuLateral)
         btnFecharMenu = findViewById(R.id.btnFecharMenu)
 
-        // DADOS DO USUÁRIO
         txtNomeUsuarioLateral =
             findViewById(R.id.txtNomeUsuarioLateral)
 
@@ -152,7 +150,6 @@ class MainActivity : AppCompatActivity() {
         menuUsuarioVisitante =
             findViewById(R.id.menuUsuarioVisitante)
 
-        // OPÇÕES DO MENU LATERAL
         btnMinhaContaLateral =
             findViewById(R.id.btnMinhaContaLateral)
 
@@ -178,13 +175,7 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.btnSairLateral)
     }
 
-    // ==============================================
-    // CLIQUES DOS BOTÕES
-    // ==============================================
-
     private fun configurarCliques() {
-
-        // BOTÕES DO TOPO
 
         btnMenuTopo.setOnClickListener {
             abrirMenuLateral()
@@ -201,10 +192,6 @@ class MainActivity : AppCompatActivity() {
         btnPerfilTopo.setOnClickListener {
             abrirPerfil()
         }
-
-        // ==========================================
-        // MENU INFERIOR
-        // ==========================================
 
         btnInicioMenu.setOnClickListener {
             voltarParaInicio()
@@ -226,10 +213,6 @@ class MainActivity : AppCompatActivity() {
             abrirCarrinho()
         }
 
-        // ==========================================
-        // BOTÕES DA HOME
-        // ==========================================
-
         btnVerTodos.setOnClickListener {
             mostrarTodosOsJogos()
         }
@@ -237,10 +220,6 @@ class MainActivity : AppCompatActivity() {
         btnComprar.setOnClickListener {
             abrirResidentEvil()
         }
-
-        // ==========================================
-        // ABRIR E FECHAR MENU LATERAL
-        // ==========================================
 
         btnFecharMenu.setOnClickListener {
             fecharMenuLateral()
@@ -250,11 +229,8 @@ class MainActivity : AppCompatActivity() {
             fecharMenuLateral()
         }
 
-        // CABEÇALHO DO MENU LATERAL
-
         btnContaCabecalhoLateral.setOnClickListener {
             fecharMenuLateral()
-
             if (usuarioEstaLogado()) {
                 abrirMinhaConta()
             } else {
@@ -262,26 +238,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // ==========================================
-        // MENU LATERAL - USUÁRIO LOGADO
-        // ==========================================
-
-        // MINHA CONTA
         btnMinhaContaLateral.setOnClickListener {
             fecharMenuLateral()
             abrirMinhaConta()
         }
 
-        // MINHA BIBLIOTECA
         btnBibliotecaLateral.setOnClickListener {
             fecharMenuLateral()
             abrirBiblioteca()
         }
 
-        // MINHAS COMPRAS
         btnComprasLateral.setOnClickListener {
             fecharMenuLateral()
-
             Toast.makeText(
                 this,
                 "Minhas compras será implementado na próxima etapa.",
@@ -289,7 +257,6 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        // CONFIGURAÇÕES
         btnConfiguracoesLateral.setOnClickListener {
             fecharMenuLateral()
 
@@ -305,12 +272,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // ==========================================
-        // MENU LATERAL - VISITANTE
-        // ==========================================
-
         btnEntrarLateral.setOnClickListener {
-            fecharMenuLateral()
+            Toast.makeText(
+                this,
+                "Botão Entrar clicado!",
+                Toast.LENGTH_SHORT
+            ).show()
+
             abrirLogin()
         }
 
@@ -319,13 +287,8 @@ class MainActivity : AppCompatActivity() {
             abrirCadastro()
         }
 
-        // ==========================================
-        // AJUDA E SUPORTE
-        // ==========================================
-
         btnAjudaLateral.setOnClickListener {
             fecharMenuLateral()
-
             Toast.makeText(
                 this,
                 "Ajuda e suporte será implementado na próxima etapa.",
@@ -333,50 +296,19 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        // ==========================================
-        // SAIR DA CONTA
-        // ==========================================
-
         btnSairLateral.setOnClickListener {
             fecharMenuLateral()
             confirmarSaida()
         }
     }
 
-    // ==============================================
-    // ABRIR MINHA BIBLIOTECA
-    // ==============================================
-
-    private fun abrirBiblioteca() {
-
-        if (!usuarioEstaLogado()) {
-            mostrarLoginNecessario(
-                "Entre na sua conta para acessar sua biblioteca."
-            )
-            return
-        }
-
-        startActivity(
-            Intent(
-                this,
-                BibliotecaActivity::class.java
-            )
-        )
-    }
-
-    // ==============================================
-    // MENU LATERAL
-    // ==============================================
-
     private fun abrirMenuLateral() {
-
         if (menuAberto) {
             fecharMenuLateral()
             return
         }
 
         atualizarMenuLateral()
-
         menuAberto = true
 
         fundoMenuLateral.alpha = 0f
@@ -397,10 +329,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fecharMenuLateral() {
-
-        if (!menuAberto) {
-            return
-        }
+        if (!menuAberto) return
 
         menuAberto = false
 
@@ -421,24 +350,15 @@ class MainActivity : AppCompatActivity() {
             .start()
     }
 
-    // ==============================================
-    // ATUALIZAR DADOS DO MENU LATERAL
-    // ==============================================
-
     private fun atualizarMenuLateral() {
-
         val preferencias = getSharedPreferences(
             "LoadingGamesPrefs",
             MODE_PRIVATE
         )
 
-        val idUsuario = preferencias.getInt(
-            "idUsuario",
-            -1
-        )
+        val idUsuario = preferencias.getInt("idUsuario", -1)
 
         if (idUsuario != -1) {
-
             val nome = preferencias.getString(
                 "nomeUsuario",
                 null
@@ -450,60 +370,32 @@ class MainActivity : AppCompatActivity() {
             )?.trim().orEmpty()
 
             txtNomeUsuarioLateral.text =
-                if (nome.isNotEmpty()) {
-                    nome
-                } else {
-                    "Jogador"
-                }
+                if (nome.isNotEmpty()) nome else "Jogador"
 
             txtEmailUsuarioLateral.text =
-                if (email.isNotEmpty()) {
-                    email
-                } else {
-                    "Conta Loading Games"
-                }
+                if (email.isNotEmpty()) email
+                else "Conta Loading Games"
 
-            btnContaCabecalhoLateral.text =
-                "MINHA CONTA  ›"
+            btnContaCabecalhoLateral.text = "MINHA CONTA  ›"
 
-            menuUsuarioLogado.visibility =
-                View.VISIBLE
-
-            menuUsuarioVisitante.visibility =
-                View.GONE
-
-            btnSairLateral.visibility =
-                View.VISIBLE
-
+            menuUsuarioLogado.visibility = View.VISIBLE
+            menuUsuarioVisitante.visibility = View.GONE
+            btnSairLateral.visibility = View.VISIBLE
         } else {
-
-            txtNomeUsuarioLateral.text =
-                "Olá, jogador!"
-
+            txtNomeUsuarioLateral.text = "Olá, jogador!"
             txtEmailUsuarioLateral.text =
                 "Entre para acessar sua conta"
 
-            btnContaCabecalhoLateral.text =
-                "ENTRAR  ›"
+            btnContaCabecalhoLateral.text = "ENTRAR  ›"
 
-            menuUsuarioLogado.visibility =
-                View.GONE
-
-            menuUsuarioVisitante.visibility =
-                View.VISIBLE
-
-            btnSairLateral.visibility =
-                View.GONE
+            menuUsuarioLogado.visibility = View.GONE
+            menuUsuarioVisitante.visibility = View.VISIBLE
+            btnSairLateral.visibility = View.GONE
         }
     }
 
-    // ==============================================
-    // BOTÃO VOLTAR
-    // ==============================================
-
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-
         if (menuAberto) {
             fecharMenuLateral()
         } else {
@@ -511,64 +403,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ==============================================
-    // HOME
-    // ==============================================
-
     private fun voltarParaInicio() {
-
         if (edtPesquisa.text.isNotEmpty()) {
-
             edtPesquisa.setText("")
-
         } else {
-
             txtTituloJogos.text = "Destaques"
-
             buscarJogosDaApi()
         }
     }
 
     private fun mostrarTodosOsJogos() {
-
         edtPesquisa.clearFocus()
-
         txtTituloJogos.text = "Todos os jogos"
-
         buscarJogosDaApi()
     }
-
-    // ==============================================
-    // AÇÕES RECEBIDAS DE OUTRAS TELAS
-    // ==============================================
 
     private fun verificarAcoesRecebidas(
         intentRecebida: Intent
     ) {
-
-        val abrirPesquisa =
-            intentRecebida.getBooleanExtra(
-                "abrirPesquisa",
-                false
-            )
+        val abrirPesquisa = intentRecebida.getBooleanExtra(
+            "abrirPesquisa",
+            false
+        )
 
         if (abrirPesquisa) {
-
             edtPesquisa.postDelayed(
-                {
-                    focarPesquisa()
-                },
+                { focarPesquisa() },
                 250
             )
         }
 
-        val categoria =
-            intentRecebida.getStringExtra(
-                "categoriaSelecionada"
-            )
+        val categoria = intentRecebida.getStringExtra(
+            "categoriaSelecionada"
+        )
 
         if (!categoria.isNullOrBlank()) {
-
             Toast.makeText(
                 this,
                 "Categoria selecionada: $categoria",
@@ -576,32 +445,19 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
-        intentRecebida.removeExtra(
-            "abrirPesquisa"
-        )
-
-        intentRecebida.removeExtra(
-            "categoriaSelecionada"
-        )
+        intentRecebida.removeExtra("abrirPesquisa")
+        intentRecebida.removeExtra("categoriaSelecionada")
     }
 
-    // ==============================================
-    // PESQUISA
-    // ==============================================
-
     private fun configurarPesquisa() {
-
         edtPesquisa.addTextChangedListener(
-
             object : TextWatcher {
-
                 override fun beforeTextChanged(
                     s: CharSequence?,
                     start: Int,
                     count: Int,
                     after: Int
-                ) {
-                }
+                ) {}
 
                 override fun onTextChanged(
                     s: CharSequence?,
@@ -609,39 +465,25 @@ class MainActivity : AppCompatActivity() {
                     before: Int,
                     count: Int
                 ) {
-
-                    val pesquisa =
-                        s?.toString()?.trim().orEmpty()
+                    val pesquisa = s?.toString()?.trim().orEmpty()
 
                     if (pesquisa.isEmpty()) {
-
                         txtTituloJogos.text = "Destaques"
-
                         buscarJogosDaApi()
-
                     } else {
-
                         txtTituloJogos.text = "Resultados"
-
                         buscarJogosDaApi(pesquisa)
                     }
                 }
 
-                override fun afterTextChanged(
-                    s: Editable?
-                ) {
-                }
+                override fun afterTextChanged(s: Editable?) {}
             }
         )
     }
 
     private fun focarPesquisa() {
-
         edtPesquisa.requestFocus()
-
-        edtPesquisa.setSelection(
-            edtPesquisa.text.length
-        )
+        edtPesquisa.setSelection(edtPesquisa.text.length)
 
         val teclado = getSystemService(
             Context.INPUT_METHOD_SERVICE
@@ -653,100 +495,64 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // ==============================================
-    // CATEGORIAS
-    // ==============================================
-
     private fun abrirCategorias() {
-
         startActivity(
-            Intent(
-                this,
-                CategoriasActivity::class.java
-            )
+            Intent(this, CategoriasActivity::class.java)
         )
     }
 
-    // ==============================================
-    // VERIFICAR LOGIN
-    // ==============================================
-
     private fun usuarioEstaLogado(): Boolean {
-
         val preferencias = getSharedPreferences(
             "LoadingGamesPrefs",
             MODE_PRIVATE
         )
 
-        return preferencias.getInt(
-            "idUsuario",
-            -1
-        ) != -1
+        return preferencias.getInt("idUsuario", -1) != -1
     }
-
-    // ==============================================
-    // LOGIN
-    // ==============================================
 
     private fun abrirLogin() {
-
         startActivity(
-            Intent(
-                this,
-                LoginActivity::class.java
-            )
+            Intent(this, LoginActivity::class.java)
         )
     }
-
-    // ==============================================
-    // CADASTRO
-    // ==============================================
 
     private fun abrirCadastro() {
-
         startActivity(
-            Intent(
-                this,
-                CadastroActivity::class.java
-            )
+            Intent(this, CadastroActivity::class.java)
         )
     }
 
-    // ==============================================
-    // CARRINHO
-    // ==============================================
-
     private fun abrirCarrinho() {
-
         if (!usuarioEstaLogado()) {
-
             mostrarLoginNecessario(
                 "Entre na sua conta para acessar o carrinho."
             )
-
             return
         }
 
         startActivity(
-            Intent(
-                this,
-                CarrinhoActivity::class.java
-            )
+            Intent(this, CarrinhoActivity::class.java)
         )
     }
 
-    // ==============================================
-    // FAVORITOS
-    // ==============================================
+    private fun abrirBiblioteca() {
+        if (!usuarioEstaLogado()) {
+            mostrarLoginNecessario(
+                "Entre na sua conta para acessar sua biblioteca."
+            )
+            return
+        }
+
+        startActivity(
+            Intent(this, BibliotecaActivity::class.java)
+        )
+    }
 
     private fun abrirFavoritos() {
-
         if (!usuarioEstaLogado()) {
-
             mostrarLoginNecessario(
                 "Entre na sua conta para acessar seus favoritos."
             )
-
             return
         }
 
@@ -757,94 +563,55 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    // ==============================================
-    // PERFIL
-    // ==============================================
-
     private fun abrirPerfil() {
-
         if (usuarioEstaLogado()) {
-
             abrirMinhaConta()
-
         } else {
-
             abrirLogin()
         }
     }
 
-    // ==============================================
-    // MINHA CONTA
-    // ==============================================
-
     private fun abrirMinhaConta() {
-
         if (!usuarioEstaLogado()) {
             abrirLogin()
             return
         }
 
-        val intent = Intent(
-            this,
-            MinhaContaActivity::class.java
+        startActivity(
+            Intent(this, MinhaContaActivity::class.java)
         )
-
-        startActivity(intent)
     }
 
-    // ==============================================
-    // AVISO DE LOGIN NECESSÁRIO
-    // ==============================================
-
-    private fun mostrarLoginNecessario(
-        mensagem: String
-    ) {
-
+    private fun mostrarLoginNecessario(mensagem: String) {
         AlertDialog.Builder(this)
             .setTitle("Entre para continuar")
             .setMessage(mensagem)
             .setPositiveButton("ENTRAR") { _, _ ->
-
                 abrirLogin()
             }
             .setNegativeButton("CRIAR CONTA") { _, _ ->
-
                 abrirCadastro()
             }
             .setNeutralButton("AGORA NÃO", null)
             .show()
     }
 
-    // ==============================================
-    // CONFIRMAR SAÍDA DA CONTA
-    // ==============================================
-
     private fun confirmarSaida() {
-
         AlertDialog.Builder(this)
             .setTitle("Sair da conta")
-            .setMessage(
-                "Deseja realmente sair da sua conta?"
-            )
+            .setMessage("Deseja realmente sair da sua conta?")
             .setPositiveButton("SAIR") { _, _ ->
-
                 sairDaConta()
             }
             .setNegativeButton("CANCELAR", null)
             .show()
     }
 
-    // ==============================================
-    // SAIR DA CONTA
-    // ==============================================
-
     private fun sairDaConta() {
-
         getSharedPreferences(
             "LoadingGamesPrefs",
             MODE_PRIVATE
-        )
-            .edit()
+        ).edit()
             .remove("idUsuario")
             .remove("nomeUsuario")
             .remove("emailUsuario")
@@ -861,539 +628,419 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    // ==============================================
-    // BANNER RESIDENT EVIL
-    // ==============================================
-
     private fun abrirResidentEvil() {
-
-        val residentEvil =
-            jogosCarregados.firstOrNull { jogo ->
-
-                jogo.nome.contains(
-                    "Resident Evil",
-                    ignoreCase = true
-                )
-            }
+        val residentEvil = jogosCarregados.firstOrNull {
+            it.nome.contains("Resident Evil", ignoreCase = true)
+        }
 
         if (residentEvil == null) {
-
-            edtPesquisa.setText(
-                "Resident Evil"
-            )
-
+            edtPesquisa.setText("Resident Evil")
             focarPesquisa()
-
             return
         }
 
-        abrirDetalhes(
-            idJogo = residentEvil.id,
-            nome = residentEvil.nome,
-            imagem = descobrirImagem(
-                residentEvil.nome
-            ),
-            preco = formatarPreco(
-                residentEvil.preco
-            ),
-            descricao =
-                residentEvil.descricao
-                    ?: "Sem descrição disponível.",
-            classificacao =
-                residentEvil.classificacaoIndicativa,
-            dataLancamento =
-                residentEvil.dataLancamento
-        )
+        abrirDetalhes(residentEvil)
     }
-
-    // ==============================================
-    // BUSCAR JOGOS DA API
-    // ==============================================
 
     private fun buscarJogosDaApi(
         pesquisa: String? = null
     ) {
-
         RetrofitClient.api
             .buscarJogos(pesquisa)
-            .enqueue(
+            .enqueue(object : Callback<List<JogoResponse>> {
 
-                object :
-                    Callback<List<JogoResponse>> {
+                override fun onResponse(
+                    call: Call<List<JogoResponse>>,
+                    response: Response<List<JogoResponse>>
+                ) {
+                    if (response.isSuccessful) {
+                        val jogos = response.body() ?: emptyList()
 
-                    override fun onResponse(
-                        call: Call<List<JogoResponse>>,
-                        response: Response<List<JogoResponse>>
-                    ) {
-
-                        if (response.isSuccessful) {
-
-                            val jogos =
-                                response.body()
-                                    ?: emptyList()
-
-                            if (
-                                pesquisa.isNullOrBlank()
-                            ) {
-
-                                jogosCarregados =
-                                    jogos
-                            }
-
-                            Log.d(
-                                "JOGOS_API",
-                                "Jogos recebidos: ${jogos.size}"
-                            )
-
-                            exibirJogos(
-                                jogos
-                            )
-
-                        } else {
-
-                            Log.e(
-                                "JOGOS_API",
-                                "Erro HTTP: ${response.code()}"
-                            )
-
-                            Toast.makeText(
-                                this@MainActivity,
-                                "Não foi possível carregar os jogos.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        if (pesquisa.isNullOrBlank()) {
+                            jogosCarregados = jogos
                         }
-                    }
 
-                    override fun onFailure(
-                        call: Call<List<JogoResponse>>,
-                        t: Throwable
-                    ) {
+                        Log.d(
+                            "JOGOS_API",
+                            "Jogos recebidos: ${jogos.size}"
+                        )
 
+                        exibirJogos(jogos)
+                    } else {
                         Log.e(
                             "JOGOS_API",
-                            "Erro de conexão",
-                            t
+                            "Erro HTTP: ${response.code()}"
                         )
 
                         Toast.makeText(
                             this@MainActivity,
-                            "Não foi possível conectar ao servidor.",
-                            Toast.LENGTH_LONG
+                            "Não foi possível carregar os jogos.",
+                            Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
-            )
+
+                override fun onFailure(
+                    call: Call<List<JogoResponse>>,
+                    t: Throwable
+                ) {
+                    Log.e("JOGOS_API", "Erro de conexão", t)
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Não foi possível conectar ao servidor.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
     }
 
-    // ==============================================
-    // EXIBIR JOGOS NA TELA INICIAL
-    // ==============================================
-
-    private fun exibirJogos(
-        jogos: List<JogoResponse>
-    ) {
-
+    private fun exibirJogos(jogos: List<JogoResponse>) {
         containerJogos.removeAllViews()
 
         if (jogos.isEmpty()) {
+            val mensagem = TextView(this).apply {
+                text = "Nenhum jogo encontrado."
+                setTextColor(Color.parseColor("#8F93A2"))
+                textSize = 14f
+                setPadding(dp(4), dp(24), dp(4), dp(24))
+            }
 
-            val mensagem =
-                TextView(this)
-
-            mensagem.text =
-                "Nenhum jogo encontrado."
-
-            mensagem.setTextColor(
-                Color.parseColor(
-                    "#8F93A2"
-                )
-            )
-
-            mensagem.textSize =
-                14f
-
-            mensagem.setPadding(
-                dp(4),
-                dp(24),
-                dp(30),
-                dp(24)
-            )
-
-            containerJogos.addView(
-                mensagem
-            )
-
+            containerJogos.addView(mensagem)
             return
         }
 
-        jogos.forEach { jogo ->
+        // CADA LINHA RECEBE ATÉ DOIS JOGOS
+        jogos.chunked(2).forEach { dupla ->
 
-            containerJogos.addView(
-                criarCardJogo(jogo)
-            )
+            val linha = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = android.view.Gravity.TOP
+            }
+
+            val parametrosLinha = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                bottomMargin = dp(16)
+            }
+
+            linha.layoutParams = parametrosLinha
+
+            dupla.forEachIndexed { indice, jogo ->
+                val card = criarCardJogo(jogo)
+
+                card.layoutParams = LinearLayout.LayoutParams(
+                    0,
+                    dp(284),
+                    1f
+                ).apply {
+                    if (indice == 0) {
+                        rightMargin = dp(7)
+                    } else {
+                        leftMargin = dp(7)
+                    }
+                }
+
+                linha.addView(card)
+            }
+
+            // SE A ÚLTIMA LINHA TIVER APENAS UM JOGO
+            if (dupla.size == 1) {
+                linha.addView(
+                    View(this),
+                    LinearLayout.LayoutParams(
+                        0,
+                        1,
+                        1f
+                    ).apply {
+                        leftMargin = dp(7)
+                    }
+                )
+            }
+
+            containerJogos.addView(linha)
         }
     }
-
-    // ==============================================
-    // CRIAR CARD DE CADA JOGO
-    // ==============================================
 
     private fun criarCardJogo(
         jogo: JogoResponse
     ): LinearLayout {
 
-        val card =
-            LinearLayout(this)
+        val card = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            isClickable = true
+            isFocusable = true
 
-        card.orientation =
-            LinearLayout.VERTICAL
+            background = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = dp(14).toFloat()
+                setColor(Color.parseColor("#151A2B"))
+                setStroke(
+                    dp(1),
+                    Color.parseColor("#292D43")
+                )
+            }
 
-        card.setBackgroundColor(
-            Color.parseColor(
-                "#111421"
-            )
-        )
-
-        card.isClickable = true
-        card.isFocusable = true
-
-        val parametrosCard =
-            LinearLayout.LayoutParams(
-                dp(165),
-                dp(230)
-            )
-
-        parametrosCard.setMargins(
-            0,
-            0,
-            dp(12),
-            0
-        )
-
-        card.layoutParams =
-            parametrosCard
+            clipToOutline = true
+            elevation = dp(2).toFloat()
+        }
 
         // CAPA DO JOGO
-
-        val imagem =
-            ImageView(this)
-
-        imagem.layoutParams =
-            LinearLayout.LayoutParams(
+        val imagem = ImageView(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(125)
+                dp(178)
             )
 
-        imagem.scaleType =
-            ImageView.ScaleType.CENTER_CROP
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            contentDescription = jogo.nome
 
-        imagem.contentDescription =
-            jogo.nome
-
-        imagem.setImageResource(
-            descobrirImagem(
-                jogo.nome
+            setImageResource(
+                descobrirImagem(
+                    jogo.nome,
+                    jogo.imagemPrincipalUrl
+                )
             )
-        )
+        }
 
-        card.addView(
-            imagem
-        )
+        card.addView(imagem)
 
-        // NOME DO JOGO
+        // NOME
+        val nome = TextView(this).apply {
+            text = jogo.nome
+            setTextColor(Color.WHITE)
+            textSize = 13f
+            setTypeface(typeface, Typeface.BOLD)
+            maxLines = 2
+            ellipsize = android.text.TextUtils.TruncateAt.END
 
-        val nome =
-            TextView(this)
+            setPadding(
+                dp(10),
+                dp(9),
+                dp(10),
+                0
+            )
+        }
 
-        nome.text =
-            jogo.nome
+        card.addView(nome)
 
-        nome.setTextColor(
-            Color.WHITE
-        )
-
-        nome.textSize = 14f
-
-        nome.setTypeface(
-            nome.typeface,
-            Typeface.BOLD
-        )
-
-        nome.maxLines = 2
-
-        nome.setPadding(
-            dp(10),
-            dp(9),
-            dp(10),
-            0
-        )
-
-        card.addView(
-            nome
-        )
-
-        // CLASSIFICAÇÃO INDICATIVA
-
-        val classificacao =
-            TextView(this)
-
-        classificacao.text =
-            if (
-                jogo.classificacaoIndicativa == 0
-            ) {
+        // CLASSIFICAÇÃO
+        val classificacao = TextView(this).apply {
+            text = if (jogo.classificacaoIndicativa == 0) {
                 "Livre"
             } else {
                 "${jogo.classificacaoIndicativa} anos"
             }
 
-        classificacao.setTextColor(
-            Color.parseColor(
-                "#8F93A2"
-            )
-        )
+            setTextColor(Color.parseColor("#9599AA"))
+            textSize = 10f
+            setPadding(dp(10), dp(4), dp(10), 0)
+        }
 
-        classificacao.textSize = 10f
+        card.addView(classificacao)
 
-        classificacao.setPadding(
-            dp(10),
-            dp(4),
-            dp(10),
-            0
-        )
-
+        // ESPAÇO PARA MANTER O PREÇO EMBAIXO
         card.addView(
-            classificacao
-        )
-
-        // PREÇO DO JOGO
-
-        val preco =
-            TextView(this)
-
-        preco.text =
-            formatarPreco(
-                jogo.preco
-            )
-
-        preco.setTextColor(
-            Color.parseColor(
-                "#C084FC"
+            View(this),
+            LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                0,
+                1f
             )
         )
 
-        preco.textSize = 15f
+        // PREÇO
+        val preco = TextView(this).apply {
+            text = formatarPreco(jogo.preco)
+            setTextColor(Color.parseColor("#C084FC"))
+            textSize = 16f
+            setTypeface(typeface, Typeface.BOLD)
 
-        preco.setTypeface(
-            preco.typeface,
-            Typeface.BOLD
-        )
+            setPadding(
+                dp(10),
+                0,
+                dp(10),
+                dp(12)
+            )
+        }
 
-        preco.setPadding(
-            dp(10),
-            dp(7),
-            dp(10),
-            0
-        )
-
-        card.addView(
-            preco
-        )
-
-        // ABRIR DETALHES AO TOCAR NO CARD
+        card.addView(preco)
 
         card.setOnClickListener {
-
-            abrirDetalhes(
-                idJogo = jogo.id,
-                nome = jogo.nome,
-                imagem = descobrirImagem(
-                    jogo.nome
-                ),
-                preco = formatarPreco(
-                    jogo.preco
-                ),
-                descricao =
-                    jogo.descricao
-                        ?: "Sem descrição disponível.",
-                classificacao =
-                    jogo.classificacaoIndicativa,
-                dataLancamento =
-                    jogo.dataLancamento
-            )
+            abrirDetalhes(jogo)
         }
 
         return card
     }
 
-    // ==============================================
-    // IMAGENS DOS JOGOS
-    // ==============================================
-
     private fun descobrirImagem(
-        nomeJogo: String
+        nomeJogo: String,
+        caminhoImagem: String? = null
     ): Int {
 
-        return when {
+        // PRIMEIRO PROCURA O ARQUIVO INFORMADO PELA API
+        if (!caminhoImagem.isNullOrBlank()) {
+            val nomeArquivo = caminhoImagem
+                .substringBefore("?")
+                .substringAfterLast("/")
+                .substringBeforeLast(".")
+                .lowercase(Locale.ROOT)
 
-            nomeJogo.contains(
-                "Grand Theft Auto",
-                ignoreCase = true
-            ) ->
-                R.drawable.capagtav
+            val idImagem = resources.getIdentifier(
+                nomeArquivo,
+                "drawable",
+                packageName
+            )
 
-            nomeJogo.contains(
-                "GTA",
-                ignoreCase = true
-            ) ->
-                R.drawable.capagtav
-
-            nomeJogo.contains(
-                "Cyberpunk",
-                ignoreCase = true
-            ) ->
-                R.drawable.capacyberpunk
-
-            nomeJogo.contains(
-                "Red Dead",
-                ignoreCase = true
-            ) ->
-                R.drawable.capareddead
-
-            nomeJogo.contains(
-                "Witcher",
-                ignoreCase = true
-            ) ->
-                R.drawable.capathewitcher
-
-            nomeJogo.contains(
-                "Minecraft",
-                ignoreCase = true
-            ) ->
-                R.drawable.capaminecraft
-
-            nomeJogo.contains(
-                "Elden Ring",
-                ignoreCase = true
-            ) ->
-                R.drawable.capaeldenring
-
-            nomeJogo.contains(
-                "God of War",
-                ignoreCase = true
-            ) ->
-                R.drawable.god_of_war
-
-            nomeJogo.contains(
-                "FC 24",
-                ignoreCase = true
-            ) ->
-                R.drawable.fc24
-
-            nomeJogo.contains(
-                "Hogwarts",
-                ignoreCase = true
-            ) ->
-                R.drawable.hogwarts
-
-            nomeJogo.contains(
-                "Resident Evil",
-                ignoreCase = true
-            ) ->
-                R.drawable.resident_evil
-
-            else ->
-                android.R.drawable.ic_menu_gallery
+            if (idImagem != 0) {
+                return idImagem
+            }
         }
+
+        // DEPOIS PROCURA PELO NOME DO JOGO
+        val nome = nomeJogo.lowercase(Locale.ROOT)
+
+        val nomeDrawable = when {
+
+            "resident evil revelations" in nome ->
+                "caparesidentevilrevelations"
+
+            "resident evil 5" in nome ->
+                "caparesidentevil5"
+
+            "resident evil 6" in nome ->
+                "caparesidentevil6"
+
+            "resident evil" in nome ->
+                "resident_evil"
+
+            "dark souls" in nome ->
+                "capadarksouls"
+
+            "sekiro" in nome ->
+                "capasekiro"
+
+            "devil may cry 4" in nome ->
+                "capadevilmaycry4"
+
+            "dragon's dogma" in nome ||
+                    "dragons dogma" in nome ->
+                "capadragonsdogma2"
+
+            "monster hunter rise" in nome ->
+                "capamonsterhunterrise"
+
+            "monster hunter world" in nome ->
+                "capamonsterhunterworld"
+
+            "street fighter v" in nome ||
+                    "street fighter 5" in nome ->
+                "capastreetfighter5"
+
+            "grand theft auto" in nome ||
+                    "gta" in nome ->
+                "capagtav"
+
+            "cyberpunk" in nome ->
+                "capacyberpunk"
+
+            "red dead" in nome ->
+                "capareddead"
+
+            "witcher" in nome ->
+                "capathewitcher"
+
+            "minecraft" in nome ->
+                "capaminecraft"
+
+            "elden ring" in nome ->
+                "capaeldenring"
+
+            "god of war" in nome ->
+                "god_of_war"
+
+            "fc 24" in nome ->
+                "fc24"
+
+            "hogwarts" in nome ->
+                "hogwarts"
+
+            else -> ""
+        }
+
+        if (nomeDrawable.isNotEmpty()) {
+            val idImagem = resources.getIdentifier(
+                nomeDrawable,
+                "drawable",
+                packageName
+            )
+
+            if (idImagem != 0) {
+                return idImagem
+            }
+        }
+
+        Log.w(
+            "CAPA_JOGO",
+            "Capa não encontrada: $nomeJogo"
+        )
+
+        return android.R.drawable.ic_menu_gallery
     }
 
-    // ==============================================
-    // FORMATAR PREÇO EM REAIS
-    // ==============================================
-
-    private fun formatarPreco(
-        preco: Double
-    ): String {
-
+    private fun formatarPreco(preco: Double): String {
         return NumberFormat
-            .getCurrencyInstance(
-                Locale(
-                    "pt",
-                    "BR"
-                )
-            )
-            .format(
-                preco
-            )
+            .getCurrencyInstance(Locale("pt", "BR"))
+            .format(preco)
     }
 
-    // ==============================================
-    // CONVERTER DP PARA PIXELS
-    // ==============================================
-
-    private fun dp(
-        valor: Int
-    ): Int {
-
+    private fun dp(valor: Int): Int {
         return (
-                valor *
-                        resources.displayMetrics.density
+                valor * resources.displayMetrics.density
                 ).toInt()
     }
 
-    // ==============================================
-    // ABRIR DETALHES DO JOGO
-    // ==============================================
-
-    private fun abrirDetalhes(
-        idJogo: Int,
-        nome: String,
-        imagem: Int,
-        preco: String,
-        descricao: String,
-        classificacao: Int,
-        dataLancamento: String?
-    ) {
+    private fun abrirDetalhes(jogo: JogoResponse) {
 
         val intent = Intent(
             this,
             DetalhesActivity::class.java
         )
 
-        intent.putExtra(
-            "idJogo",
-            idJogo
-        )
-
-        intent.putExtra(
-            "nome",
-            nome
-        )
+        intent.putExtra("idJogo", jogo.id)
+        intent.putExtra("nome", jogo.nome)
 
         intent.putExtra(
             "imagem",
-            imagem
+            descobrirImagem(
+                jogo.nome,
+                jogo.imagemPrincipalUrl
+            )
         )
 
         intent.putExtra(
             "preco",
-            preco
+            formatarPreco(jogo.preco)
         )
 
         intent.putExtra(
             "descricao",
-            descricao
+            jogo.descricao ?: "Sem descrição disponível."
         )
 
         intent.putExtra(
             "classificacao",
-            classificacao
+            jogo.classificacaoIndicativa
         )
 
         intent.putExtra(
             "dataLancamento",
-            dataLancamento
+            jogo.dataLancamento
         )
 
         startActivity(intent)
     }
 }
+
+

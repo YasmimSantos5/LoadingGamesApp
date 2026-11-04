@@ -2,15 +2,34 @@
 package com.example.loadinggames
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import java.io.File
+import java.io.FileOutputStream
 
 class MinhaContaActivity : AppCompatActivity() {
 
+    private lateinit var imgFotoPerfil: ImageView
+    private lateinit var txtAvatarPadrao: TextView
+
+    private val selecionarFoto = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
+
+        if (uri != null) {
+            salvarFotoPerfil(uri)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_minha_conta)
 
         val preferencias = getSharedPreferences(
@@ -26,19 +45,27 @@ class MinhaContaActivity : AppCompatActivity() {
             return
         }
 
-        // ==========================================
-        // BOTÃO VOLTAR
-        // ==========================================
+        imgFotoPerfil = findViewById(R.id.imgFotoPerfil)
+        txtAvatarPadrao = findViewById(R.id.txtAvatarPadrao)
 
+        // ALTERAR FOTO
+        findViewById<View>(R.id.btnAlterarFotoConta)
+            .setOnClickListener {
+                selecionarFoto.launch("image/*")
+            }
+
+        findViewById<View>(R.id.txtAlterarFotoConta)
+            .setOnClickListener {
+                selecionarFoto.launch("image/*")
+            }
+
+        // VOLTAR
         findViewById<View>(R.id.btnVoltarConta)
             .setOnClickListener {
                 finish()
             }
 
-        // ==========================================
-        // OPÇÕES DA CONTA
-        // ==========================================
-
+        // MEUS DADOS
         findViewById<View>(R.id.btnMeusDados)
             .setOnClickListener {
                 startActivity(
@@ -46,6 +73,7 @@ class MinhaContaActivity : AppCompatActivity() {
                 )
             }
 
+        // ALTERAR SENHA
         findViewById<View>(R.id.btnAlterarSenha)
             .setOnClickListener {
                 startActivity(
@@ -53,30 +81,28 @@ class MinhaContaActivity : AppCompatActivity() {
                 )
             }
 
+        // CONFIGURAÇÕES
         findViewById<View>(R.id.btnConfiguracoesConta)
             .setOnClickListener {
                 startActivity(
-                    Intent(this, ConfiguracoesContaActivity::class.java)
+                    Intent(
+                        this,
+                        ConfiguracoesContaActivity::class.java
+                    )
                 )
             }
 
-        // ==========================================
-        // MENU INFERIOR - PADRÃO DA MAIN
-        // ==========================================
-
-        // INÍCIO
+        // MENU INFERIOR
         findViewById<View>(R.id.btnInicioConta)
             .setOnClickListener {
                 abrirMain()
             }
 
-        // BUSCAR
         findViewById<View>(R.id.btnBuscarConta)
             .setOnClickListener {
                 abrirMain("buscar")
             }
 
-        // CATEGORIAS
         findViewById<View>(R.id.btnCategoriasConta)
             .setOnClickListener {
                 startActivity(
@@ -84,13 +110,11 @@ class MinhaContaActivity : AppCompatActivity() {
                 )
             }
 
-        // FAVORITOS
         findViewById<View>(R.id.btnFavoritosConta)
             .setOnClickListener {
                 abrirMain("favoritos")
             }
 
-        // CARRINHO
         findViewById<View>(R.id.btnCarrinhoConta)
             .setOnClickListener {
                 startActivity(
@@ -99,16 +123,108 @@ class MinhaContaActivity : AppCompatActivity() {
             }
     }
 
-    // ==========================================
-    // ABRIR MAINACTIVITY
-    // ==========================================
+    // SALVAR FOTO NO ARMAZENAMENTO DO APP
+    private fun salvarFotoPerfil(uri: android.net.Uri) {
 
+        val idUsuario = obterIdUsuario()
+
+        if (idUsuario == -1) return
+
+        try {
+            val arquivo = File(
+                filesDir,
+                "foto_perfil_$idUsuario.jpg"
+            )
+
+            val bitmap = contentResolver
+                .openInputStream(uri)
+                ?.use { entrada ->
+                    BitmapFactory.decodeStream(entrada)
+                }
+
+            if (bitmap == null) {
+                Toast.makeText(
+                    this,
+                    "Não foi possível abrir a imagem.",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
+
+            FileOutputStream(arquivo).use { saida ->
+                bitmap.compress(
+                    android.graphics.Bitmap.CompressFormat.JPEG,
+                    85,
+                    saida
+                )
+            }
+
+            bitmap.recycle()
+
+            carregarFotoPerfil()
+
+            Toast.makeText(
+                this,
+                "Foto de perfil atualizada!",
+                Toast.LENGTH_SHORT
+            ).show()
+
+        } catch (e: Exception) {
+            Toast.makeText(
+                this,
+                "Erro ao salvar a foto: ${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    // CARREGAR FOTO DO USUÁRIO LOGADO
+    private fun carregarFotoPerfil() {
+
+        val idUsuario = obterIdUsuario()
+
+        if (idUsuario == -1) return
+
+        val arquivo = File(
+            filesDir,
+            "foto_perfil_$idUsuario.jpg"
+        )
+
+        if (arquivo.exists()) {
+
+            val bitmap = BitmapFactory.decodeFile(
+                arquivo.absolutePath
+            )
+
+            if (bitmap != null) {
+                imgFotoPerfil.setImageBitmap(bitmap)
+                imgFotoPerfil.visibility = View.VISIBLE
+                txtAvatarPadrao.visibility = View.GONE
+                return
+            }
+        }
+
+        // MOSTRAR AVATAR PADRÃO
+        imgFotoPerfil.setImageDrawable(null)
+        imgFotoPerfil.visibility = View.GONE
+        txtAvatarPadrao.visibility = View.VISIBLE
+    }
+
+    private fun obterIdUsuario(): Int {
+        return getSharedPreferences(
+            "LoadingGamesPrefs",
+            MODE_PRIVATE
+        ).getInt("idUsuario", -1)
+    }
+
+    // ABRIR MAINACTIVITY
     private fun abrirMain(acao: String? = null) {
 
         val intent = Intent(
             this,
             MainActivity::class.java
         ).apply {
+
             flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or
                     Intent.FLAG_ACTIVITY_SINGLE_TOP
 
@@ -121,10 +237,7 @@ class MinhaContaActivity : AppCompatActivity() {
         finish()
     }
 
-    // ==========================================
-    // ATUALIZAR DADOS DO USUÁRIO
-    // ==========================================
-
+    // ATUALIZAR PERFIL
     override fun onResume() {
         super.onResume()
 
@@ -157,5 +270,7 @@ class MinhaContaActivity : AppCompatActivity() {
             } else {
                 "@jogador"
             }
+
+        carregarFotoPerfil()
     }
 }

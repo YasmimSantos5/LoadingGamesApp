@@ -1,99 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#070812">
+    android:background="#080B16"
+    android:fillViewport="true"
+    android:scrollbars="none">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="28dp">
-
-        <!-- LOGO -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:text="LOADING"
-            android:textColor="#FFFFFF"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="GAMES"
-            android:textColor="#6C2BD9"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <!-- TÍTULO -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="55dp"
-            android:text="Esqueceu sua senha?"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <!-- DESCRIÇÃO -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:id="@+id/btnVoltarRecuperacao"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:gravity="center"
-            android:text="Digite seu e-mail e enviaremos as instruções para recuperar sua senha."
-            android:textColor="#8B8FA3"
-            android:textSize="14sp" />
-
-        <!-- E-MAIL -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="35dp"
-            android:text="E-mail"
+            android:text="‹"
             android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textSize="34sp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Voltar" />
 
-        <EditText
-            android:id="@+id/edtEmailRecuperacao"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="8dp"
-            android:backgroundTint="#6C2BD9"
-            android:hint="Digite seu e-mail"
-            android:inputType="textEmailAddress"
-            android:padding="15dp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#777B8F" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-        <!-- BOTÃO -->
-        <Button
-            android:id="@+id/btnRecuperarSenha"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="25dp"
-            android:backgroundTint="#6C2BD9"
-            android:text="RECUPERAR SENHA"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <ImageView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/ic_controle_roxo"
+                android:contentDescription="Loading Games" />
 
-        <!-- VOLTAR -->
-        <TextView
-            android:id="@+id/txtVoltarLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="← Voltar para o login"
-            android:textColor="#A855F7"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="Esqueceu sua senha?"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="Informe seu e-mail cadastrado para recuperar o acesso à sua conta."
+                android:textColor="#B6B7C4"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/edtEmailRecuperacao"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/bg_campo_auth"
+                android:drawableStart="@drawable/ic_email_auth"
+                android:drawablePadding="14dp"
+                android:hint="E-mail"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionDone"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#B6B7C4"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnRecuperarSenha"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:layout_marginTop="28dp"
+                android:backgroundTint="#8700F5"
+                android:text="Recuperar senha"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtVoltarLogin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="← Voltar para o login"
+                android:textColor="#A855F7"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

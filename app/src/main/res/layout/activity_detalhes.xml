@@ -1,119 +1,245 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#070812">
+    android:background="#080B16">
 
-    <LinearLayout
+    <!-- CONTEÚDO ROLÁVEL -->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="30dp">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-        <!-- CAPA -->
-        <ImageView
-            android:id="@+id/imgJogo"
-            android:layout_width="match_parent"
-            android:layout_height="340dp"
-            android:contentDescription="Imagem do jogo"
-            android:scaleType="centerCrop" />
-
-        <!-- CONTEÚDO -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:paddingBottom="120dp">
 
-            <!-- CLASSIFICAÇÃO -->
-            <TextView
-                android:id="@+id/txtClassificacao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Classificação: Livre"
-                android:textColor="#A855F7"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+            <!-- CAPA DO JOGO -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="340dp">
 
-            <!-- NOME -->
-            <TextView
-                android:id="@+id/txtNomeJogo"
+                <ImageView
+                    android:id="@+id/imgJogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Capa do jogo"
+                    android:scaleType="centerCrop" />
+
+                <!-- SOMBRA NA CAPA -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#33000000" />
+
+                <!-- BOTÃO VOLTAR -->
+                <TextView
+                    android:id="@+id/btnVoltarDetalhes"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:layout_gravity="top|start"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="22dp"
+                    android:background="@drawable/bg_voltar_detalhes"
+                    android:clickable="true"
+                    android:contentDescription="Voltar"
+                    android:elevation="8dp"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="‹"
+                    android:textColor="#FFFFFF"
+                    android:textSize="34sp" />
+
+                <!-- SELO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#7C3AED"
+                    android:paddingStart="12dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="7dp"
+                    android:text="LOADING GAMES"
+                    android:textColor="#FFFFFF"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </FrameLayout>
+
+            <!-- INFORMAÇÕES DO JOGO -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Nome do jogo"
-                android:textColor="#FFFFFF"
-                android:textSize="28sp"
-                android:textStyle="bold" />
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingTop="24dp"
+                android:paddingEnd="20dp">
 
-            <!-- DATA DE LANÇAMENTO -->
-            <TextView
-                android:id="@+id/txtDataLancamento"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Lançamento: --"
-                android:textColor="#888DA0"
-                android:textSize="13sp" />
+                <!-- CLASSIFICAÇÃO -->
+                <TextView
+                    android:id="@+id/txtClassificacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#241936"
+                    android:paddingStart="12dp"
+                    android:paddingTop="7dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="7dp"
+                    android:text="Classificação: Livre"
+                    android:textColor="#C084FC"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
-            <!-- DESCRIÇÃO -->
-            <TextView
-                android:id="@+id/txtDescricao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:lineSpacingExtra="4dp"
-                android:text="Descrição do jogo"
-                android:textColor="#B7BAC7"
-                android:textSize="14sp" />
+                <!-- NOME DO JOGO -->
+                <TextView
+                    android:id="@+id/txtNomeJogo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Nome do jogo"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
-            <!-- PREÇO -->
-            <TextView
-                android:id="@+id/txtPreco"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="R$ 0,00"
-                android:textColor="#FFFFFF"
-                android:textSize="26sp"
-                android:textStyle="bold" />
+                <!-- DATA DE LANÇAMENTO -->
+                <TextView
+                    android:id="@+id/txtDataLancamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Lançamento: não informado"
+                    android:textColor="#9295A5"
+                    android:textSize="13sp" />
 
-            <!-- DISPONIBILIDADE -->
-            <TextView
-                android:id="@+id/txtPlataforma"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="Disponível no catálogo"
-                android:textColor="#888DA0"
-                android:textSize="13sp" />
+                <!-- DIVISÓRIA -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="24dp"
+                    android:background="#292D43" />
 
-            <!-- BOTÃO CARRINHO -->
-            <Button
-                android:id="@+id/btnAdicionarCarrinho"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="25dp"
-                android:backgroundTint="#6C2BD9"
-                android:text="ADICIONAR AO CARRINHO"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                <!-- TÍTULO DA DESCRIÇÃO -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Sobre o jogo"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <!-- FAVORITO -->
-            <Button
-                android:id="@+id/btnFavorito"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:backgroundTint="#191C2A"
-                android:text="♡  ADICIONAR AOS FAVORITOS"
-                android:textColor="#FFFFFF"
-                android:textSize="12sp" />
+                <!-- DESCRIÇÃO -->
+                <TextView
+                    android:id="@+id/txtDescricao"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:lineSpacingExtra="6dp"
+                    android:text="Descrição do jogo"
+                    android:textColor="#B7BAC7"
+                    android:textSize="14sp" />
+
+                <!-- DIVISÓRIA -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="28dp"
+                    android:background="#292D43" />
+
+                <!-- INFORMAÇÕES DE COMPRA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="#151A2B"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PREÇO DO JOGO"
+                        android:textColor="#9295A5"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <!-- PREÇO -->
+                    <TextView
+                        android:id="@+id/txtPreco"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="R$ 0,00"
+                        android:textColor="#C084FC"
+                        android:textSize="32sp"
+                        android:textStyle="bold" />
+
+                    <!-- DISPONIBILIDADE -->
+                    <TextView
+                        android:id="@+id/txtPlataforma"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Disponível no catálogo"
+                        android:textColor="#A9ADBA"
+                        android:textSize="13sp" />
+
+                    <!-- BOTÃO CARRINHO -->
+                    <Button
+                        android:id="@+id/btnAdicionarCarrinho"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="24dp"
+                        android:backgroundTint="#7C3AED"
+                        android:gravity="center"
+                        android:text="ADICIONAR AO CARRINHO"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <!-- BOTÃO FAVORITOS -->
+                    <Button
+                        android:id="@+id/btnFavorito"
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="10dp"
+                        android:backgroundTint="#292D43"
+                        android:gravity="center"
+                        android:text="♡  Adicionar aos favoritos"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- RODAPÉ -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    android:text="LOADING GAMES  •  SUA PRÓXIMA AVENTURA"
+                    android:textColor="#62677A"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+            <!-- FIM DAS INFORMAÇÕES -->
 
         </LinearLayout>
+        <!-- FIM DO CONTEÚDO -->
 
-    </LinearLayout>
+    </ScrollView>
 
-</ScrollView>
+</FrameLayout>

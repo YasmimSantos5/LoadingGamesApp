@@ -1,59 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#080912">
+    android:background="#080B16">
 
-    <!-- ====================================== -->
     <!-- CABEÇALHO -->
-    <!-- ====================================== -->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingHorizontal="18dp">
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
 
         <TextView
             android:id="@+id/btnVoltarConta"
-            android:layout_width="40dp"
+            android:layout_width="44dp"
             android:layout_height="48dp"
             android:gravity="center"
             android:text="‹"
             android:textColor="#FFFFFF"
             android:textSize="36sp"
+            android:clickable="true"
+            android:focusable="true"
             android:contentDescription="Voltar" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center"
             android:text="Minha Conta"
             android:textColor="#FFFFFF"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textSize="18sp" />
+            android:gravity="center" />
 
         <View
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
-
+            android:layout_width="44dp"
+            android:layout_height="44dp" />
     </LinearLayout>
 
-    <!-- ====================================== -->
-    <!-- CONTEÚDO -->
-    <!-- ====================================== -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#25293B" />
 
+    <!-- CONTEÚDO -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -61,54 +62,87 @@
             android:orientation="vertical"
             android:padding="18dp">
 
-            <!-- ================================== -->
             <!-- CARD DO PERFIL -->
-            <!-- ================================== -->
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:padding="24dp"
-                android:background="@drawable/bg_card_perfil">
+                android:background="@drawable/bg_card_perfil"
+                android:padding="24dp">
 
+                <!-- FOTO CIRCULAR -->
                 <FrameLayout
-                    android:layout_width="92dp"
-                    android:layout_height="92dp">
+                    android:id="@+id/btnAlterarFotoConta"
+                    android:layout_width="112dp"
+                    android:layout_height="112dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="Alterar foto de perfil">
 
-                    <TextView
-                        android:layout_width="88dp"
-                        android:layout_height="88dp"
+                    <FrameLayout
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/bg_avatar_perfil"
-                        android:gravity="center"
-                        android:text="🎮"
-                        android:textSize="39sp" />
+                        android:background="@drawable/bg_avatar_perfil">
 
+                        <ImageView
+                            android:id="@+id/imgFotoPerfil"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="3dp"
+                            android:scaleType="centerCrop"
+                            android:background="@drawable/bg_foto_circular"
+                            android:clipToOutline="true"
+                            android:visibility="gone"
+                            android:contentDescription="Foto de perfil" />
+
+                        <TextView
+                            android:id="@+id/txtAvatarPadrao"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:text="🎮"
+                            android:textSize="38sp" />
+                    </FrameLayout>
+
+                    <!-- ÍCONE DE EDIÇÃO -->
                     <TextView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_gravity="bottom|right"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="bottom|end"
                         android:background="@drawable/bg_roxo_perfil"
                         android:gravity="center"
-                        android:text="✦"
+                        android:text="✎"
                         android:textColor="#FFFFFF"
-                        android:textSize="18sp" />
-
+                        android:textSize="20sp" />
                 </FrameLayout>
 
+                <TextView
+                    android:id="@+id/txtAlterarFotoConta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Alterar foto"
+                    android:textColor="#C084FC"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <!-- NOME -->
                 <TextView
                     android:id="@+id/txtNomeConta"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="16dp"
                     android:gravity="center"
                     android:text="Jogador"
                     android:textColor="#FFFFFF"
-                    android:textSize="19sp"
+                    android:textSize="23sp"
                     android:textStyle="bold" />
 
+                <!-- USUÁRIO -->
                 <TextView
                     android:id="@+id/txtNomeUsuarioConta"
                     android:layout_width="match_parent"
@@ -116,9 +150,10 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="\@jogador"
-                    android:textColor="#C1BDD3"
+                    android:textColor="#C5BDD6"
                     android:textSize="13sp" />
 
+                <!-- E-MAIL -->
                 <TextView
                     android:id="@+id/txtEmailConta"
                     android:layout_width="match_parent"
@@ -126,50 +161,63 @@
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:text="email@exemplo.com"
-                    android:textColor="#C1BDD3"
+                    android:textColor="#9398AD"
                     android:textSize="13sp" />
 
+                <!-- SELO -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/bg_selo_perfil"
-                    android:paddingHorizontal="14dp"
-                    android:paddingVertical="7dp"
-                    android:text="🎮  Usuário Comum"
+                    android:paddingStart="14dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="14dp"
+                    android:paddingBottom="8dp"
+                    android:text="🎮  Jogador Loading Games"
                     android:textColor="#D9B4FF"
                     android:textSize="12sp" />
 
             </LinearLayout>
 
-            <!-- ================================== -->
-            <!-- MEUS DADOS -->
-            <!-- ================================== -->
+            <!-- TÍTULO DA SEÇÃO -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26dp"
+                android:layout_marginBottom="12dp"
+                android:text="GERENCIAR CONTA"
+                android:textColor="#9CA3B8"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
+            <!-- MEUS DADOS -->
             <LinearLayout
                 android:id="@+id/btnMeusDados"
                 android:layout_width="match_parent"
                 android:layout_height="78dp"
-                android:layout_marginTop="22dp"
-                android:background="@drawable/bg_card_perfil"
-                android:gravity="center_vertical"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_card_perfil"
                 android:paddingHorizontal="16dp"
                 android:clickable="true"
                 android:focusable="true">
 
                 <TextView
-                    android:layout_width="36dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_selo_perfil"
                     android:text="♙"
-                    android:textColor="#CB78FF"
-                    android:textSize="28sp" />
+                    android:textColor="#C084FC"
+                    android:textSize="25sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingStart="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -183,54 +231,51 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Nome, e-mail e nome de usuário"
-                        android:textColor="#B8B7C9"
-                        android:textSize="11sp" />
-
+                        android:text="Informações pessoais e contato"
+                        android:textColor="#A5A9BB"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="›"
-                    android:textColor="#D5C9EA"
+                    android:textColor="#A5A9BB"
                     android:textSize="28sp" />
-
             </LinearLayout>
 
-            <!-- ================================== -->
             <!-- ALTERAR SENHA -->
-            <!-- ================================== -->
-
             <LinearLayout
                 android:id="@+id/btnAlterarSenha"
                 android:layout_width="match_parent"
                 android:layout_height="78dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_card_perfil"
-                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_card_perfil"
                 android:paddingHorizontal="16dp"
                 android:clickable="true"
                 android:focusable="true">
 
                 <TextView
-                    android:layout_width="36dp"
-                    android:layout_height="wrap_content"
-                    android:text="♙"
-                    android:textColor="#CB78FF"
-                    android:textSize="28sp" />
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_selo_perfil"
+                    android:text="🔒"
+                    android:textSize="21sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingStart="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alterar senha"
+                        android:text="Segurança"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -239,54 +284,52 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Defina uma nova senha"
-                        android:textColor="#B8B7C9"
-                        android:textSize="11sp" />
-
+                        android:text="Alterar senha e proteger a conta"
+                        android:textColor="#A5A9BB"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="›"
-                    android:textColor="#D5C9EA"
+                    android:textColor="#A5A9BB"
                     android:textSize="28sp" />
-
             </LinearLayout>
 
-            <!-- ================================== -->
-            <!-- CONFIGURAÇÕES DA CONTA -->
-            <!-- ================================== -->
-
+            <!-- CONFIGURAÇÕES -->
             <LinearLayout
                 android:id="@+id/btnConfiguracoesConta"
                 android:layout_width="match_parent"
                 android:layout_height="78dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_card_perfil"
-                android:gravity="center_vertical"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_card_perfil"
                 android:paddingHorizontal="16dp"
                 android:clickable="true"
                 android:focusable="true">
 
                 <TextView
-                    android:layout_width="36dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_selo_perfil"
                     android:text="⚙"
-                    android:textColor="#CB78FF"
+                    android:textColor="#C084FC"
                     android:textSize="26sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingStart="14dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Configurações da conta"
+                        android:text="Configurações"
                         android:textColor="#FFFFFF"
                         android:textSize="15sp"
                         android:textStyle="bold" />
@@ -296,57 +339,48 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="Privacidade e preferências"
-                        android:textColor="#B8B7C9"
-                        android:textSize="11sp" />
-
+                        android:textColor="#A5A9BB"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="›"
-                    android:textColor="#D5C9EA"
+                    android:textColor="#A5A9BB"
                     android:textSize="28sp" />
-
             </LinearLayout>
 
         </LinearLayout>
-
     </ScrollView>
 
-    <!-- ========================================== -->
-    <!-- MENU INFERIOR - PADRÃO DA MAIN -->
-    <!-- ========================================== -->
-
+    <!-- MENU INFERIOR -->
     <LinearLayout
         android:id="@+id/menuInferiorConta"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:background="#0D0F1A"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:background="#0D0F1A"
         android:paddingHorizontal="8dp"
         android:elevation="12dp">
 
-        <!-- ====================================== -->
         <!-- INÍCIO -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:id="@+id/btnInicioConta"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:contentDescription="Início"
                 android:src="@drawable/ic_home"
+                android:contentDescription="Início"
                 app:tint="#777B8A" />
 
             <TextView
@@ -356,28 +390,24 @@
                 android:text="Início"
                 android:textColor="#777B8A"
                 android:textSize="10sp" />
-
         </LinearLayout>
 
-        <!-- ====================================== -->
         <!-- BUSCAR -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:id="@+id/btnBuscarConta"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:contentDescription="Buscar"
                 android:src="@drawable/ic_search"
+                android:contentDescription="Buscar"
                 app:tint="#777B8A" />
 
             <TextView
@@ -387,28 +417,24 @@
                 android:text="Buscar"
                 android:textColor="#777B8A"
                 android:textSize="10sp" />
-
         </LinearLayout>
 
-        <!-- ====================================== -->
         <!-- CATEGORIAS -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:id="@+id/btnCategoriasConta"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:contentDescription="Categorias"
                 android:src="@drawable/ic_categories"
+                android:contentDescription="Categorias"
                 app:tint="#777B8A" />
 
             <TextView
@@ -418,28 +444,24 @@
                 android:text="Categorias"
                 android:textColor="#777B8A"
                 android:textSize="10sp" />
-
         </LinearLayout>
 
-        <!-- ====================================== -->
         <!-- FAVORITOS -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:id="@+id/btnFavoritosConta"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:contentDescription="Favoritos"
                 android:src="@drawable/ic_favorite"
+                android:contentDescription="Favoritos"
                 app:tint="#777B8A" />
 
             <TextView
@@ -449,28 +471,24 @@
                 android:text="Favoritos"
                 android:textColor="#777B8A"
                 android:textSize="10sp" />
-
         </LinearLayout>
 
-        <!-- ====================================== -->
         <!-- CARRINHO -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:id="@+id/btnCarrinhoConta"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:clickable="true"
-            android:focusable="true"
+            android:orientation="vertical"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:focusable="true">
 
             <ImageView
                 android:layout_width="23dp"
                 android:layout_height="23dp"
-                android:contentDescription="Carrinho"
                 android:src="@drawable/ic_cart"
+                android:contentDescription="Carrinho"
                 app:tint="#777B8A" />
 
             <TextView
@@ -480,9 +498,7 @@
                 android:text="Carrinho"
                 android:textColor="#777B8A"
                 android:textSize="10sp" />
-
         </LinearLayout>
 
     </LinearLayout>
-
 </LinearLayout>

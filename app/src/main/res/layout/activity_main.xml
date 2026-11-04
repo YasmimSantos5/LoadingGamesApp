@@ -5,31 +5,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#070812">
+    android:background="#080B16">
 
-    <!-- ========================================== -->
-    <!-- HOME -->
-    <!-- ========================================== -->
-
+    <!-- CONTEÚDO PRINCIPAL -->
     <LinearLayout
         android:id="@+id/conteudoPrincipal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#070812"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#080B16">
 
-        <!-- ====================================== -->
         <!-- CABEÇALHO -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:paddingEnd="16dp">
-
-            <!-- MENU LATERAL -->
 
             <ImageButton
                 android:id="@+id/btnMenuTopo"
@@ -39,8 +31,6 @@
                 android:contentDescription="Menu"
                 android:padding="9dp"
                 android:src="@drawable/ic_menu" />
-
-            <!-- LOGO -->
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -64,10 +54,7 @@
                     android:textColor="#A855F7"
                     android:textSize="10sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
-
-            <!-- FAVORITOS -->
 
             <ImageButton
                 android:id="@+id/btnFavoritosTopo"
@@ -78,8 +65,6 @@
                 android:padding="9dp"
                 android:src="@drawable/ic_favorite" />
 
-            <!-- CARRINHO -->
-
             <ImageButton
                 android:id="@+id/btnCarrinhoTopo"
                 android:layout_width="40dp"
@@ -89,8 +74,6 @@
                 android:padding="9dp"
                 android:src="@drawable/ic_cart" />
 
-            <!-- PERFIL -->
-
             <ImageButton
                 android:id="@+id/btnPerfilTopo"
                 android:layout_width="40dp"
@@ -99,13 +82,9 @@
                 android:contentDescription="Perfil"
                 android:padding="9dp"
                 android:src="@drawable/ic_person" />
-
         </LinearLayout>
 
-        <!-- ====================================== -->
-        <!-- CONTEÚDO PRINCIPAL -->
-        <!-- ====================================== -->
-
+        <!-- ROLAGEM DA HOME -->
         <ScrollView
             android:id="@+id/scrollHome"
             android:layout_width="match_parent"
@@ -120,10 +99,7 @@
                 android:orientation="vertical"
                 android:paddingBottom="28dp">
 
-                <!-- ============================== -->
                 <!-- PESQUISA -->
-                <!-- ============================== -->
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
@@ -157,13 +133,9 @@
                         android:textColor="#FFFFFF"
                         android:textColorHint="#858999"
                         android:textSize="14sp" />
-
                 </LinearLayout>
 
-                <!-- ============================== -->
-                <!-- BANNER RESIDENT EVIL 4 -->
-                <!-- ============================== -->
-
+                <!-- BANNER -->
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="255dp"
@@ -178,14 +150,10 @@
                         android:scaleType="centerCrop"
                         android:src="@drawable/resident_evil" />
 
-                    <!-- CAMADA ESCURA -->
-
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="#88000000" />
-
-                    <!-- INFORMAÇÕES DO BANNER -->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -198,10 +166,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="#6C2BD9"
-                            android:paddingStart="8dp"
-                            android:paddingTop="5dp"
-                            android:paddingEnd="8dp"
-                            android:paddingBottom="5dp"
+                            android:padding="6dp"
                             android:text="DESTAQUE"
                             android:textColor="#FFFFFF"
                             android:textSize="10sp"
@@ -248,22 +213,15 @@
                                 android:textColor="#FFFFFF"
                                 android:textSize="10sp"
                                 android:textStyle="bold" />
-
                         </LinearLayout>
-
                     </LinearLayout>
-
                 </FrameLayout>
 
-                <!-- ====================================== -->
                 <!-- INDICADORES DO BANNER -->
-                <!-- ====================================== -->
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="28dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:gravity="center">
 
                     <View
                         android:layout_width="18dp"
@@ -281,13 +239,9 @@
                         android:layout_height="4dp"
                         android:layout_marginStart="6dp"
                         android:background="#454858" />
-
                 </LinearLayout>
 
-                <!-- ====================================== -->
-                <!-- DESTAQUES -->
-                <!-- ====================================== -->
-
+                <!-- TÍTULO DOS JOGOS -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -301,7 +255,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Destaques"
+                        android:text="Explore nossos jogos"
                         android:textColor="#FFFFFF"
                         android:textSize="21sp"
                         android:textStyle="bold" />
@@ -318,47 +272,36 @@
                         android:textColor="#A855F7"
                         android:textSize="13sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
 
-                <!-- ====================================== -->
-                <!-- JOGOS CARREGADOS PELA API -->
-                <!-- ====================================== -->
-
-                <HorizontalScrollView
+                <!-- JOGOS EM DUAS COLUNAS -->
+                <LinearLayout
+                    android:id="@+id/containerJogos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:clipToPadding="false"
-                    android:fillViewport="false"
-                    android:scrollbars="none">
-
-                    <LinearLayout
-                        android:id="@+id/containerJogos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingStart="18dp"
-                        android:paddingEnd="18dp" />
-
-                </HorizontalScrollView>
+                    android:orientation="vertical"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingBottom="20dp" />
 
             </LinearLayout>
-
         </ScrollView>
 
         <!-- ====================================== -->
-        <!-- MENU INFERIOR -->
+        <!-- MENU DE NAVEGAÇÃO INFERIOR -->
         <!-- ====================================== -->
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:background="#0D0F1A"
-            android:orientation="horizontal">
+            android:layout_height="70dp"
+            android:background="#111421"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
 
             <!-- INÍCIO -->
-
             <LinearLayout
                 android:id="@+id/btnInicioMenu"
                 android:layout_width="0dp"
@@ -379,16 +322,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:text="Início"
                     android:textColor="#A855F7"
                     android:textSize="10sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
 
             <!-- BUSCAR -->
-
             <LinearLayout
                 android:id="@+id/btnBuscarMenu"
                 android:layout_width="0dp"
@@ -404,20 +345,18 @@
                     android:layout_height="23dp"
                     android:contentDescription="Buscar"
                     android:src="@drawable/ic_search"
-                    app:tint="#777B8A" />
+                    app:tint="#9295A5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:text="Buscar"
-                    android:textColor="#777B8A"
+                    android:textColor="#9295A5"
                     android:textSize="10sp" />
-
             </LinearLayout>
 
             <!-- CATEGORIAS -->
-
             <LinearLayout
                 android:id="@+id/btnCategoriasMenu"
                 android:layout_width="0dp"
@@ -433,20 +372,18 @@
                     android:layout_height="23dp"
                     android:contentDescription="Categorias"
                     android:src="@drawable/ic_categories"
-                    app:tint="#777B8A" />
+                    app:tint="#9295A5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:text="Categorias"
-                    android:textColor="#777B8A"
+                    android:textColor="#9295A5"
                     android:textSize="10sp" />
-
             </LinearLayout>
 
             <!-- FAVORITOS -->
-
             <LinearLayout
                 android:id="@+id/btnFavoritosMenu"
                 android:layout_width="0dp"
@@ -462,20 +399,18 @@
                     android:layout_height="23dp"
                     android:contentDescription="Favoritos"
                     android:src="@drawable/ic_favorite"
-                    app:tint="#777B8A" />
+                    app:tint="#9295A5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:text="Favoritos"
-                    android:textColor="#777B8A"
+                    android:textColor="#9295A5"
                     android:textSize="10sp" />
-
             </LinearLayout>
 
             <!-- CARRINHO -->
-
             <LinearLayout
                 android:id="@+id/btnCarrinhoMenu"
                 android:layout_width="0dp"
@@ -491,598 +426,539 @@
                     android:layout_height="23dp"
                     android:contentDescription="Carrinho"
                     android:src="@drawable/ic_cart"
-                    app:tint="#777B8A" />
+                    app:tint="#9295A5" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="5dp"
                     android:text="Carrinho"
-                    android:textColor="#777B8A"
+                    android:textColor="#9295A5"
                     android:textSize="10sp" />
-
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+    <!-- FIM DO CONTEÚDO PRINCIPAL -->
 
-    <!-- ========================================== -->
+    <!-- ====================================== -->
     <!-- FUNDO ESCURO DO MENU LATERAL -->
-    <!-- ========================================== -->
+    <!-- ====================================== -->
 
     <View
         android:id="@+id/fundoMenuLateral"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B0000000"
+        android:background="#B8000000"
         android:clickable="true"
         android:focusable="true"
         android:visibility="gone" />
 
-    <!-- ========================================== -->
+    <!-- ====================================== -->
     <!-- MENU LATERAL -->
-    <!-- ========================================== -->
+    <!-- ====================================== -->
 
     <LinearLayout
         android:id="@+id/menuLateral"
-        android:layout_width="310dp"
+        android:layout_width="330dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#0D0F1A"
-        android:elevation="20dp"
+        android:background="#111421"
+        android:elevation="16dp"
         android:orientation="vertical"
-        android:paddingStart="20dp"
-        android:paddingTop="18dp"
-        android:paddingEnd="20dp"
-        android:paddingBottom="18dp"
-        android:translationX="-340dp"
         android:visibility="gone">
 
-        <!-- ====================================== -->
         <!-- CABEÇALHO DO MENU -->
-        <!-- ====================================== -->
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="60dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <!-- LOGO -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="LOADING"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="GAMES"
-                    android:textColor="#A855F7"
-                    android:textSize="9sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <!-- FECHAR MENU -->
-
-            <TextView
-                android:id="@+id/btnFecharMenu"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="?android:attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="×"
-                android:textColor="#9CA0AF"
-                android:textSize="26sp" />
-
-        </LinearLayout>
-
-        <!-- ====================================== -->
-        <!-- PERFIL DO USUÁRIO -->
-        <!-- ====================================== -->
-
-        <LinearLayout
-            android:id="@+id/cabecalhoUsuarioLateral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <!-- AVATAR -->
-
-            <FrameLayout
-                android:layout_width="64dp"
-                android:layout_height="64dp"
-                android:background="@drawable/bg_avatar"
-                android:elevation="3dp">
-
-                <ImageView
-                    android:id="@+id/imgAvatarLateral"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="Foto do usuário"
-                    android:src="@drawable/ic_person"
-                    app:tint="#FFFFFF" />
-
-            </FrameLayout>
-
-            <!-- NOME E EMAIL -->
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txtNomeUsuarioLateral"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Olá, jogador!"
-                    android:textColor="#FFFFFF"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/txtEmailUsuarioLateral"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Entre para acessar sua conta"
-                    android:textColor="#858999"
-                    android:textSize="11sp" />
-
-                <!-- ID UTILIZADO PELO MAINACTIVITY -->
-
-                <TextView
-                    android:id="@+id/btnContaCabecalhoLateral"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:text="ENTRAR"
-                    android:visibility="gone" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- DIVISOR -->
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#202330" />
-
-        <!-- ====================================== -->
-        <!-- MENU DO USUÁRIO LOGADO -->
-        <!-- ====================================== -->
-
-        <LinearLayout
-            android:id="@+id/menuUsuarioLogado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="CONTA"
-                android:textColor="#696D7C"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <!-- MINHA CONTA -->
-
-            <LinearLayout
-                android:id="@+id/btnMinhaContaLateral"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="Minha conta"
-                    android:src="@drawable/ic_person"
-                    app:tint="#A855F7" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Minha conta"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="›"
-                    android:textColor="#696D7C"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <!-- MINHA BIBLIOTECA -->
-
-            <LinearLayout
-                android:id="@+id/btnBibliotecaLateral"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="Minha biblioteca"
-                    android:src="@drawable/ic_categories"
-                    app:tint="#969AA8" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Minha biblioteca"
-                    android:textColor="#E4E5EA"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="›"
-                    android:textColor="#696D7C"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <!-- ====================================== -->
-            <!-- MINHAS COMPRAS -->
-            <!-- ====================================== -->
-
-            <LinearLayout
-                android:id="@+id/btnComprasLateral"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="Minhas compras"
-                    android:src="@drawable/ic_cart"
-                    app:tint="#969AA8" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Minhas compras"
-                    android:textColor="#E4E5EA"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="›"
-                    android:textColor="#696D7C"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <!-- ====================================== -->
-            <!-- CONFIGURAÇÕES -->
-            <!-- ====================================== -->
-
-            <LinearLayout
-                android:id="@+id/btnConfiguracoesLateral"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="Configurações"
-                    android:src="@drawable/ic_settings"
-                    app:tint="#969AA8" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Configurações"
-                    android:textColor="#E4E5EA"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="›"
-                    android:textColor="#696D7C"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- ========================================== -->
-        <!-- MENU DO VISITANTE -->
-        <!-- ========================================== -->
-
-        <LinearLayout
-            android:id="@+id/menuUsuarioVisitante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="CONTA"
-                android:textColor="#696D7C"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-
-            <!-- ====================================== -->
-            <!-- ENTRAR -->
-            <!-- ====================================== -->
-
-            <LinearLayout
-                android:id="@+id/btnEntrarLateral"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="Entrar"
-                    android:src="@drawable/ic_person"
-                    app:tint="#A855F7" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Entrar"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="›"
-                    android:textColor="#696D7C"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-            <!-- ====================================== -->
-            <!-- CRIAR CONTA -->
-            <!-- ====================================== -->
-
-            <LinearLayout
-                android:id="@+id/btnCriarContaLateral"
-                android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingStart="2dp"
-                android:paddingEnd="4dp">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:contentDescription="Criar conta"
-                    android:src="@drawable/ic_person"
-                    app:tint="#969AA8" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Criar conta"
-                    android:textColor="#E4E5EA"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:layout_width="24dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="›"
-                    android:textColor="#696D7C"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <!-- ========================================== -->
-        <!-- ESPAÇO FLEXÍVEL -->
-        <!-- ========================================== -->
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- ========================================== -->
-        <!-- SUPORTE -->
-        <!-- ========================================== -->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="6dp"
-            android:text="SUPORTE"
-            android:textColor="#696D7C"
-            android:textSize="10sp"
-            android:textStyle="bold" />
-
-        <!-- ========================================== -->
-        <!-- AJUDA E SUPORTE -->
-        <!-- ========================================== -->
-
-        <LinearLayout
-            android:id="@+id/btnAjudaLateral"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="2dp"
-            android:paddingEnd="4dp">
-
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:gravity="center"
-                android:text="?"
-                android:textColor="#969AA8"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            android:paddingStart="20dp"
+            android:paddingEnd="16dp">
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Ajuda e suporte"
-                android:textColor="#E4E5EA"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="24dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="›"
-                android:textColor="#696D7C"
-                android:textSize="22sp" />
-
-        </LinearLayout>
-
-        <!-- ========================================== -->
-        <!-- DIVISOR INFERIOR -->
-        <!-- ========================================== -->
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="6dp"
-            android:background="#202330" />
-
-        <!-- ========================================== -->
-        <!-- SAIR DA CONTA -->
-        <!-- ========================================== -->
-
-        <LinearLayout
-            android:id="@+id/btnSairLateral"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingStart="2dp"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:gravity="center"
-                android:text="↪"
-                android:textColor="#FF6577"
+                android:text="LOADING GAMES"
+                android:textColor="#FFFFFF"
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Sair da conta"
-                android:textColor="#FF6577"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:id="@+id/btnFecharMenu"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="✕"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
 
         </LinearLayout>
 
+        <!-- DIVISÓRIA -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#292D43" />
+
+        <!-- CONTEÚDO ROLÁVEL DO MENU -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- DADOS DO USUÁRIO -->
+                <LinearLayout
+                    android:id="@+id/cabecalhoUsuarioLateral"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="20dp">
+
+                    <!-- AVATAR -->
+                    <ImageView
+                        android:id="@+id/imgAvatarLateral"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        android:background="@drawable/bg_avatar"
+                        android:contentDescription="Avatar do usuário"
+                        android:padding="12dp"
+                        android:src="@drawable/ic_person" />
+
+                    <!-- NOME E EMAIL -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/txtNomeUsuarioLateral"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Olá, jogador!"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txtEmailUsuarioLateral"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:maxLines="2"
+                            android:text="Entre para acessar sua conta"
+                            android:textColor="#9295A5"
+                            android:textSize="11sp" />
+
+                        <TextView
+                            android:id="@+id/btnContaCabecalhoLateral"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="9dp"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="ENTRAR  ›"
+                            android:textColor="#C084FC"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- DIVISÓRIA -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="#292D43" />
+
+                <!-- ================================= -->
+                <!-- OPÇÕES PARA USUÁRIO LOGADO -->
+                <!-- ================================= -->
+
+                <LinearLayout
+                    android:id="@+id/menuUsuarioLogado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="22dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="MINHA CONTA"
+                        android:textColor="#A855F7"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <!-- MINHA CONTA -->
+                    <LinearLayout
+                        android:id="@+id/btnMinhaContaLateral"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="22dp"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:contentDescription="Minha conta"
+                            android:src="@drawable/ic_person"
+                            app:tint="#C084FC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_weight="1"
+                            android:text="Minha conta"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="›"
+                            android:textColor="#9295A5"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <!-- MINHA BIBLIOTECA -->
+                    <LinearLayout
+                        android:id="@+id/btnBibliotecaLateral"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="22dp"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:contentDescription="Minha biblioteca"
+                            android:src="@android:drawable/ic_menu_agenda"
+                            app:tint="#C084FC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_weight="1"
+                            android:text="Minha biblioteca"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="›"
+                            android:textColor="#9295A5"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <!-- MINHAS COMPRAS -->
+                    <LinearLayout
+                        android:id="@+id/btnComprasLateral"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="22dp"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:contentDescription="Minhas compras"
+                            android:src="@drawable/ic_cart"
+                            app:tint="#C084FC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_weight="1"
+                            android:text="Minhas compras"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="›"
+                            android:textColor="#9295A5"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                    <!-- CONFIGURAÇÕES -->
+                    <LinearLayout
+                        android:id="@+id/btnConfiguracoesLateral"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="22dp"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:contentDescription="Configurações"
+                            android:src="@drawable/ic_settings"
+                            app:tint="#C084FC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_weight="1"
+                            android:text="Configurações"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="›"
+                            android:textColor="#9295A5"
+                            android:textSize="24sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!-- FIM DO MENU DO USUÁRIO LOGADO -->
+
+                <!-- ================================= -->
+                <!-- OPÇÕES PARA USUÁRIO VISITANTE -->
+                <!-- ================================= -->
+
+                <LinearLayout
+                    android:id="@+id/menuUsuarioVisitante"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="22dp"
+                        android:paddingTop="20dp"
+                        android:paddingBottom="10dp"
+                        android:text="ACESSAR CONTA"
+                        android:textColor="#A855F7"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <!-- ENTRAR -->
+                    <LinearLayout
+                        android:id="@+id/btnEntrarLateral"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="22dp"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:contentDescription="Entrar"
+                            android:src="@drawable/ic_person"
+                            app:tint="#C084FC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_weight="1"
+                            android:text="Entrar"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="›"
+                            android:textColor="#9295A5"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+
+                    <!-- CRIAR CONTA -->
+                    <LinearLayout
+                        android:id="@+id/btnCriarContaLateral"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="22dp"
+                        android:paddingEnd="20dp">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:contentDescription="Criar conta"
+                            android:src="@drawable/ic_person"
+                            app:tint="#C084FC" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="17dp"
+                            android:layout_weight="1"
+                            android:text="Criar conta"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="›"
+                            android:textColor="#9295A5"
+                            android:textSize="24sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- ================================= -->
+                <!-- DIVISÓRIA -->
+                <!-- ================================= -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#292D43" />
+
+                <!-- ================================= -->
+                <!-- AJUDA E SUPORTE -->
+                <!-- ================================= -->
+
+                <LinearLayout
+                    android:id="@+id/btnAjudaLateral"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="20dp">
+
+                    <TextView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:gravity="center"
+                        android:text="?"
+                        android:textColor="#C084FC"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_weight="1"
+                        android:text="Ajuda e suporte"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#9295A5"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <!-- ================================= -->
+                <!-- SAIR DA CONTA -->
+                <!-- ================================= -->
+
+                <LinearLayout
+                    android:id="@+id/btnSairLateral"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center_vertical"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="20dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:gravity="center"
+                        android:text="↪"
+                        android:textColor="#F87171"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="17dp"
+                        android:layout_weight="1"
+                        android:text="Sair da conta"
+                        android:textColor="#F87171"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="›"
+                        android:textColor="#9295A5"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <!-- ESPAÇAMENTO FINAL -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+            <!-- FIM DO CONTEÚDO ROLÁVEL -->
+
+        </ScrollView>
+
     </LinearLayout>
+    <!-- FIM DO MENU LATERAL -->
 
 </FrameLayout>
+    <!-- FIM DO ACTIVITY_MAIN.XML -->
