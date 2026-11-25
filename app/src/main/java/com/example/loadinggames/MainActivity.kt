@@ -1,4 +1,3 @@
-
 package com.example.loadinggames
 
 import android.content.Context
@@ -26,6 +25,7 @@ import com.example.loadinggames.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.Normalizer
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -80,6 +80,7 @@ class MainActivity : AppCompatActivity() {
     // CONTROLE
     private var menuAberto = false
     private var jogosCarregados: List<JogoResponse> = emptyList()
+    private var categoriaAtiva: String? = null
 
     // INICIAR A ACTIVITY
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,8 +92,8 @@ class MainActivity : AppCompatActivity() {
         configurarCliques()
         configurarPesquisa()
         atualizarMenuLateral()
-        buscarJogosDaApi()
         verificarAcoesRecebidas(intent)
+        buscarJogosDaApi()
     }
 
     override fun onResume() {
@@ -108,6 +109,7 @@ class MainActivity : AppCompatActivity() {
 
         setIntent(intent)
         verificarAcoesRecebidas(intent)
+        aplicarFiltros()
     }
 
     // INICIALIZAR COMPONENTES
@@ -404,18 +406,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun voltarParaInicio() {
+        categoriaAtiva = null
+
         if (edtPesquisa.text.isNotEmpty()) {
             edtPesquisa.setText("")
         } else {
             txtTituloJogos.text = "Destaques"
-            buscarJogosDaApi()
+            aplicarFiltros()
         }
     }
 
     private fun mostrarTodosOsJogos() {
         edtPesquisa.clearFocus()
+        categoriaAtiva = null
         txtTituloJogos.text = "Todos os jogos"
-        buscarJogosDaApi()
+        aplicarFiltros()
     }
 
     private fun verificarAcoesRecebidas(
@@ -435,14 +440,19 @@ class MainActivity : AppCompatActivity() {
 
         val categoria = intentRecebida.getStringExtra(
             "categoriaSelecionada"
-        )
+        )?.trim()
 
         if (!categoria.isNullOrBlank()) {
-            Toast.makeText(
-                this,
-                "Categoria selecionada: $categoria",
-                Toast.LENGTH_SHORT
-            ).show()
+            if (
+                categoria.equals("Todas as categorias", ignoreCase = true) ||
+                categoria.equals("Todas", ignoreCase = true)
+            ) {
+                categoriaAtiva = null
+                txtTituloJogos.text = "Todos os jogos"
+            } else {
+                categoriaAtiva = categoria
+                txtTituloJogos.text = categoria
+            }
         }
 
         intentRecebida.removeExtra("abrirPesquisa")
@@ -468,12 +478,16 @@ class MainActivity : AppCompatActivity() {
                     val pesquisa = s?.toString()?.trim().orEmpty()
 
                     if (pesquisa.isEmpty()) {
-                        txtTituloJogos.text = "Destaques"
-                        buscarJogosDaApi()
+                        txtTituloJogos.text = categoriaAtiva ?: "Destaques"
                     } else {
-                        txtTituloJogos.text = "Resultados"
-                        buscarJogosDaApi(pesquisa)
+                        txtTituloJogos.text = if (categoriaAtiva != null) {
+                            "$categoriaAtiva • Resultados"
+                        } else {
+                            "Resultados"
+                        }
                     }
+
+                    aplicarFiltros()
                 }
 
                 override fun afterTextChanged(s: Editable?) {}
@@ -642,11 +656,9 @@ class MainActivity : AppCompatActivity() {
         abrirDetalhes(residentEvil)
     }
 
-    private fun buscarJogosDaApi(
-        pesquisa: String? = null
-    ) {
+    private fun buscarJogosDaApi() {
         RetrofitClient.api
-            .buscarJogos(pesquisa)
+            .buscarJogos(null)
             .enqueue(object : Callback<List<JogoResponse>> {
 
                 override fun onResponse(
@@ -655,17 +667,14 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     if (response.isSuccessful) {
                         val jogos = response.body() ?: emptyList()
-
-                        if (pesquisa.isNullOrBlank()) {
-                            jogosCarregados = jogos
-                        }
+                        jogosCarregados = jogos
 
                         Log.d(
                             "JOGOS_API",
                             "Jogos recebidos: ${jogos.size}"
                         )
 
-                        exibirJogos(jogos)
+                        aplicarFiltros()
                     } else {
                         Log.e(
                             "JOGOS_API",
@@ -695,12 +704,92 @@ class MainActivity : AppCompatActivity() {
             })
     }
 
+    private fun aplicarFiltros() {
+        val termoPesquisa = normalizarTexto(
+            edtPesquisa.text?.toString()?.trim().orEmpty()
+        )
+        val categoriaAlvo = categoriaAtiva?.let { normalizarTexto(it) }
+
+        val filtrados = jogosCarregados.filter { jogo ->
+            val bateCategoria = if (categoriaAlvo.isNullOrBlank()) {
+                true
+            } else {
+                extrairCategorias(jogo).any { cat ->
+                    normalizarTexto(cat).contains(categoriaAlvo) ||
+                            categoriaAlvo.contains(normalizarTexto(cat))
+                }
+            }
+
+            val batePesquisa = if (termoPesquisa.isBlank()) {
+                true
+            } else {
+                normalizarTexto(jogo.nome).contains(termoPesquisa)
+            }
+
+            bateCategoria && batePesquisa
+        }
+
+        exibirJogos(filtrados)
+    }
+
+    private fun extrairCategorias(jogo: JogoResponse): List<String> {
+        val texto = "${jogo.nome}${jogo.descricao.orEmpty()}"
+        val textoNormalizado = normalizarTexto(texto)
+        val categoriasEncontradas = mutableListOf<String>()
+
+        val regras = mapOf(
+            "Ação" to listOf(
+                "acao", "action", "resident evil", "gta", "grand theft auto",
+                "god of war", "devil may cry", "sekiro", "cyberpunk", "monster hunter",
+                "street fighter"
+            ),
+            "Aventura" to listOf(
+                "aventura", "adventure", "red dead", "hogwarts", "minecraft",
+                "god of war", "resident evil", "zelda", "uncharted"
+            ),
+            "RPG" to listOf(
+                "rpg", "elden ring", "dark souls", "witcher", "dragon's dogma",
+                "dragons dogma", "cyberpunk", "final fantasy", "persona"
+            ),
+            "Esportes" to listOf(
+                "esporte", "esportes", "sport", "sports", "fc 24", "fifa",
+                "nba", "efootball", "futebol"
+            ),
+            "Corrida" to listOf(
+                "corrida", "racing", "forza", "gran turismo", "need for speed",
+                "mario kart", "f1"
+            ),
+            "Estratégia" to listOf(
+                "estrategia", "strategy", "civilization", "age of empires",
+                "xcom", "tactics", "total war"
+            )
+        )
+
+        regras.forEach { (categoria, palavrasChave) ->
+            if (palavrasChave.any { palavra -> normalizarTexto(palavra) in textoNormalizado }) {
+                categoriasEncontradas.add(categoria)
+            }
+        }
+
+        return categoriasEncontradas
+    }
+
+    private fun normalizarTexto(texto: String): String {
+        val semAcento = Normalizer.normalize(texto, Normalizer.Form.NFD)
+            .replace("\\p{InCombiningDiacriticalMarks}+".toRegex(), "")
+        return semAcento.lowercase(Locale.ROOT).trim()
+    }
+
     private fun exibirJogos(jogos: List<JogoResponse>) {
         containerJogos.removeAllViews()
 
         if (jogos.isEmpty()) {
             val mensagem = TextView(this).apply {
-                text = "Nenhum jogo encontrado."
+                text = if (categoriaAtiva != null) {
+                    "Nenhum jogo encontrado na categoria \"$categoriaAtiva\"."
+                } else {
+                    "Nenhum jogo encontrado."
+                }
                 setTextColor(Color.parseColor("#8F93A2"))
                 textSize = 14f
                 setPadding(dp(4), dp(24), dp(4), dp(24))
@@ -1042,5 +1131,3 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 }
-
-
